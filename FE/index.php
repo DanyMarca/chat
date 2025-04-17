@@ -8,8 +8,11 @@
     <!-- import styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="components/sidebar-chat/sidebar-chat.css">
+
+    
 </head>
 <body>
+    
     <div id="sidebar">
         <div id="sidebar-content">
             <div id="sidebar-content-search">
@@ -34,5 +37,7 @@
 
         </div>
     </main>
+    <!-- import js -->
+    <script src="components/sidebar-chat/sidebar-chat.js"></script>
 </body>
 </html>
