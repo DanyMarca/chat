@@ -1,0 +1,19 @@
+:root{
+    --sidebar-background: #1F2421;
+    --sidebar-hilight: #216869;
+    --chat-background: #DCE1DE;
+    --chat-message-others:#49A078;
+    --chat-message-mine:#9CC5A1;
+}
+
+body{
+    margin: 0px;
+}
+
+div#sidebar{
+    background-color: var(--sidebar-background);
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
