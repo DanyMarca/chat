@@ -1,0 +1,46 @@
+div#chat{
+    padding: 12px;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease-in-out;
+}
+div#chat:hover{
+    background-color: var(--sidebar-hilight-50);
+    transition: all 0.2s ease-in-out;
+}
+
+div#chat-image{
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-image: url(../../images/image1.jpg);
+    background-size: cover ;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div#chat-content{
+    color: var(--messages-text-colo);
+    
+}
+h1#chat-name{
+    margin: 0px;
+}
+div#chat-status{
+    display: flex;
+    align-items: center;
+}
+div#status-color{
+    height: 12px;
+    aspect-ratio: 1/1;
+    align-items: center;
+    border-radius: 50%;
+    background-color: gray;
+    border: 1px solid gray;
+}
+h4#status-text{
+    color: var(--secondary-texts-color);
+}
+

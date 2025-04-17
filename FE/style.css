@@ -1,13 +1,20 @@
 :root{
     --sidebar-background: #1F2421;
+    --sidebar-hilight-50:#2168696e;
     --sidebar-hilight: #216869;
+    --sidebar-search-bg:#353b38;
+
     --chat-background: #DCE1DE;
-    --chat-message-others:#49A078;
-    --chat-message-mine:#9CC5A1;
+    --chat-message-bg-others:#49A078;
+    --chat-message-bg-mine:#9CC5A1;
+
+    --messages-text-colo: #DCE1DE;
+    --secondary-texts-color:#9b9b9b ;
 }
 
 body{
     margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 div#sidebar{
@@ -16,4 +23,26 @@ div#sidebar{
     height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+div#sidebar-content-search{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+div#sidebar-content-search input{
+    background-color: var(--sidebar-search-bg);
+    height: 4vh;
+    width: 60%;
+    color: var(--messages-text-colo);
+}
+
+div#sidebar-content-chats{
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
