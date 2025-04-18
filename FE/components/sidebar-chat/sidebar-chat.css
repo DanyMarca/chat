@@ -7,6 +7,7 @@
     cursor: pointer;
     border-radius: 16px;
     transition: all 0.2s ease-in-out;
+    overflow: hidden;
 }
 .chat:hover{
     background-color: var(--sidebar-hilight-50);
@@ -31,9 +32,10 @@ div#chat-content{
     color: var(--messages-text-colo);
     
 }
-h1#chat-name{
+h1#main-header-chat-name{
     margin: 0px;
 }
+
 div#chat-status{
     display: flex;
     align-items: center;
@@ -48,6 +50,9 @@ div#status-color{
 }
 h4#status-text{
     color: var(--secondary-texts-color);
+    margin: 0px;
+}
+h1#chat-name{
     margin: 0px;
 }
 

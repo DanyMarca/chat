@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat</title>
     
     <!-- import styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="components/sidebar-chat/sidebar-chat.css">
-
-    
+    <link rel="stylesheet" href="components/main//main.css">
+    <link rel="stylesheet" href="components/messages-coming/messages-coming.css">
+    <link rel="stylesheet" href="components/messages-sending/messages-sending.css">
 </head>
 <body>
     
@@ -29,14 +30,11 @@
         </div>
     </div>
 
-    <main>
-        <div id="main-header">
-            
-        </div>
-        <div id="main-chat">
-
-        </div>
-    </main>
+    <div id="main">
+        <?php
+            include('components/main/main.html');
+        ?>
+    </div>
     <!-- import js -->
     <script src="components/sidebar-chat/sidebar-chat.js"></script>
 </body>
