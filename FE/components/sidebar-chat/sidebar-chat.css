@@ -14,7 +14,7 @@
     transition: all 0.2s ease-in-out;
 }
 
-.chat.active{
+.chat:focus{
     background-color: var(--sidebar-hilight);
 }
 

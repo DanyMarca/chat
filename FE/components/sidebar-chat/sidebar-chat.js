@@ -1,17 +1,17 @@
-document.addEventListener('DOMContentLoaded', function ()
-{
+// document.addEventListener('DOMContentLoaded', function ()
+// {
 
-    document.querySelectorAll('.chat').forEach(chat => {
-        chat.classList.remove('active');
+//     document.querySelectorAll('.chat').forEach(chat => {
+//         chat.classList.remove('active');
 
-        chat.addEventListener('click', function () {
+//         chat.addEventListener('click', function () {
 
-            document.querySelectorAll('.chat').forEach(c => {
-                c.classList.remove('active');
-            });
-            chat.classList.add('active');
-        });
-    });
+//             document.querySelectorAll('.chat').forEach(c => {
+//                 c.classList.remove('active');
+//             });
+//             chat.classList.add('active');
+//         });
+//     });
 
 
-});
+// });

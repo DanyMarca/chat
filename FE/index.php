@@ -32,7 +32,7 @@
 
     <div id="main">
         <?php
-            include('components/main/main.html');
+            include('components/main/main.php');
         ?>
     </div>
     <!-- import js -->
