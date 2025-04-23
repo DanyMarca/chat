@@ -16,14 +16,16 @@ class Migration {
                 id BIGINT AUTO_INCREMENT PRIMARY KEY,
                 email VARCHAR(255) NOT NULL UNIQUE,
                 password VARCHAR(255) NOT NULL,
-                name VARCHAR(100) NOT NULL
+                name VARCHAR(100) NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         ";
         
         $createChats = "
             CREATE TABLE IF NOT EXISTS Chats (
                 id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(100) NOT NULL
+                name VARCHAR(100) NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         ";
 
@@ -32,6 +34,7 @@ class Migration {
                 id BIGINT AUTO_INCREMENT PRIMARY KEY,
                 user_id BIGINT NOT NULL,
                 chat_id BIGINT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
                 FOREIGN KEY (chat_id) REFERENCES Chats(id) ON DELETE CASCADE
             );

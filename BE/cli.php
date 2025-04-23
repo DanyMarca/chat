@@ -40,7 +40,10 @@ class cli{
             case 'seed':
                 $this->seed();
                 break;
-                
+
+            case 'test':
+                require 'BE\test_json.php';
+                break;
             default:
                 $this->invalidCommand($command);
                 break;

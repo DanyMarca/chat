@@ -1,22 +1,35 @@
 <?php
 namespace BE\seeding;
+
 require_once __DIR__ . '\UserFactory.php';
 require_once __DIR__ . '\ChatFactory.php';
+require_once __DIR__ . '\MessageFactory.php';
+require_once __DIR__ . '\User_ChatFactory.php';
 
 class Seeder{
-    private static $obj_n = 10;
+    public static $obj_n = 10;
 
     public static function factoryDB()
     {
     for ($i = 0; $i < self::$obj_n; $i++) {
-        $user = UserFactory::create();
+        UserFactory::create();
     }
     echo "---Userfactory---\n";
 
     for ($i = 0; $i < self::$obj_n; $i++) {
-        $chat = ChatFactory::create();
+        ChatFactory::create();
     }
     echo "---Chatfactory---\n";
+
+    for ($i = 0; $i < self::$obj_n; $i++) {
+        MessageFactory::create();
+    }
+    echo "---MessageFactory---\n";
+
+    for ($i = 0; $i < self::$obj_n; $i++) {
+        User_ChatFactory::create();
+    }
+    echo "---User_ChatFactory---\n";
 
     }
 }
