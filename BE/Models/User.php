@@ -1,4 +1,6 @@
 <?php
+namespace BE\Models;
+
 class User{
     private ?int $id;
     private string $name;

@@ -1,5 +1,11 @@
 <?php
-require_once '../Models/User.php';
+namespace BE\seeding;
+
+require_once __DIR__ . '/../database/Database.php';
+require_once __DIR__ . '/../Models/User.php';
+
+use BE\database\Database;
+use BE\Models\User;
 
 class UserFactory {
     public static function make(): User {

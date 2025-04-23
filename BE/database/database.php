@@ -1,69 +1,48 @@
 <?php
-require_once 'connection.php';
+namespace BE\database;
 
-class Migration {
-    private $pdo;
+class Database {
+    private static $pdo = null;
 
-    public function __construct() {
-        $this->pdo = Database::getConnection();
+    // Impostazioni per la connessione al database
+    private static $host = 'localhost';
+    private static $db = 'chat_db';
+    private static $user = 'root';
+    private static $password = '';
+    private static $charset = 'utf8mb4';
+    private static $dns;
+
+
+    public static function getConnection(){
+        if (self::$pdo === null) {
+            $dsn = "mysql:host=" . self::$host . ";dbname=" . self::$db . ";charset=" . self::$charset;
+    
+            try {
+                self::$pdo = new \PDO(
+                    $dsn,
+                    self::$user,
+                    self::$password,
+                    [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]
+                );
+                // echo "connesso";
+            } catch (\PDOException $e) {
+                echo "Errore nella connessione: " . $e->getMessage();
+                exit;
+            }
+        }
+    
+        return self::$pdo;
+    }
+    
+
+    public static function query($sql, $params = []){
+        $stmt = self::$pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function migrateDB() {
-        $createUsers = "
-            CREATE TABLE IF NOT EXISTS Users (
-                id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                email VARCHAR(255) NOT NULL UNIQUE,
-                password VARCHAR(255) NOT NULL,
-                name VARCHAR(100) NOT NULL
-            );
-        ";
-        
-        $createChats = "
-            CREATE TABLE IF NOT EXISTS Chats (
-                id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(100) NOT NULL
-            );
-        ";
-
-        $createUsers_Chats = "
-            CREATE TABLE IF NOT EXISTS Users_Chats (
-                id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                user_id BIGINT NOT NULL,
-                chat_id BIGINT NOT NULL,
-                FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
-                FOREIGN KEY (chat_id) REFERENCES Chats(id) ON DELETE CASCADE
-            );
-        ";
-
-        $createMessages = "
-            CREATE TABLE IF NOT EXISTS Messages (
-                id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                user_id BIGINT NOT NULL,
-                chat_id BIGINT NOT NULL,
-                content VARCHAR(1000) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
-                FOREIGN KEY (chat_id) REFERENCES Chats(id) ON DELETE CASCADE
-            );
-        ";
-
-        try {
-            $this->pdo->exec($createUsers);
-            echo "Creata: Users<br>";
-
-            $this->pdo->exec($createChats);
-            echo "Creata: Chats<br>";
-
-            $this->pdo->exec($createUsers_Chats);
-            echo "Creata: Users_Chats<br>";
-
-            $this->pdo->exec($createMessages);
-            echo "Creata: Messages<br>";
-        } catch (PDOException $e) {
-            echo "Errore nella migrazione: " . $e->getMessage();
-        }
+    public static function closeConnection() {
+        self::$pdo = null;
     }
 }
-
-
 ?>
