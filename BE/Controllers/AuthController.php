@@ -1,8 +1,6 @@
 <?php
 namespace BE\Controllers;
 
-session_start();
-
 require_once BASE_PATH . 'BE\Models\User.php';
 require_once BASE_PATH . 'BE\database\Database.php';
 
@@ -27,7 +25,9 @@ class AuthController{
         }
 
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['email'] = $user['email']; // per coerenza
         $_SESSION['last_activity'] = time();
+
         return json_encode([
             'status' => 'success',
             'data' => [
@@ -39,36 +39,41 @@ class AuthController{
         ]);
     }
 
-    public static function isLogged(){
-        if(isset($_SESSION['user_id'])){
+    public static function isLogged() {
+        if (isset($_SESSION['user_id'])) {
+            if (!self::sessionttl()) {
+                return json_encode([
+                    'status' => 'error',
+                    'message' => 'Sessione scaduta'
+                ]);
+            }
+    
             return json_encode([
                 'status' => 'success',
                 'data' => 'user is logged'
             ]);
-        }else{
+        } else {
             return json_encode([
                 'status' => 'error',
                 'data' => 'user is not logged'
             ]);
         }
-
     }
+    
 
 
 
-    public static function sessiottl() {
+    public static function sessionttl() {
         $timeout_duration = 1800; // 30 minuti
     
-    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
-        session_unset();
-        session_destroy();
-        return json_encode([
-            'status' => 'error',
-            'message' => 'Sessione scaduta'
-        ]);
+        if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
+            session_unset();
+            session_destroy();
+            return false;
+        }
+    
+        $_SESSION['last_activity'] = time(); // aggiorna l'attività
+        return true;
     }
     
-    $_SESSION['last_activity'] = time(); // aggiorna l'attività
-    
-    }
 }

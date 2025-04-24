@@ -8,7 +8,7 @@ function login(){
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    alert('login: ', email , password);
+    
     fetch("http://localhost/chat/BE/api/login", {
         method: "POST",
         headers: {
@@ -21,9 +21,11 @@ function login(){
         })
     })
     .then(res => res.json())
-    .then(data => {
-        if (data.status === "success") {
+    .then(responce => {
+        if (responce.status === "success") {
             alert("Login avvenuto con successo");
+            localStorage.setItem('user_id', responce.data.id);
+            alert(responce.data.id);
             loadIndex();
         } else {
             alert('❌ Credenziali errate!');
@@ -40,16 +42,17 @@ function logout() {
 }
 
 function isLoggedIn() {
-    return fetch('http://localhost/chat/BE/api/isLogged', {
+    return fetch('http://localhost/chat/BE/api/sessioncheck', {
         credentials: 'include'
     })
     .then(res => res.json())
     .then(data => {
-        return data.status === "success";
+        return data.loggedin;
     })
     .catch(err => {
         console.error("Errore nella fetch:", err);
         return false;
     });
 }
+
 

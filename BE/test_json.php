@@ -5,11 +5,11 @@ namespace BE;
 require_once __DIR__ . '/database/Database.php';
 
 use BE\database\Database;
+// session_start();
+// session_unset();
+// session_destroy();
 
-session_start();
 
-$_SESSION['user_id'] = 1;
-echo $_SESSION['user_id'];
 // try {
 //     $pdo = Database::getConnection();
 
