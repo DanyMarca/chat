@@ -11,9 +11,9 @@
     --messages-text-colo: #DCE1DE;
     --secondary-texts-color:#9b9b9b ;
 }
-* {
+/* * {
     box-sizing: border-box;
-}
+} */
 
 body{
     margin: 0px;
@@ -23,7 +23,7 @@ body{
 
 div#sidebar{
     background-color: var(--sidebar-background);
-    width: 20%;
+    width: 30%;
     height: 100vh;
     display: flex;
     flex-direction: column;
