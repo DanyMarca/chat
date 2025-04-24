@@ -61,5 +61,31 @@ class User{
         }
     }
     
+
+    public static function All(){
+        $db = Database::getConnection();
+        
+
+        $stmt = $db->query("SELECT * FROM Users");
+        $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        
+        foreach($users as &$user){
+            $user['cahts'] = self::getChatsForUser($db, $user['id']) ?? null;
+        }
+        return $users;
+    }
+
+    protected static function getChatsForUser($db, $userId) {
+        $sql = "
+            SELECT c.*
+            FROM Chats AS c
+            INNER JOIN users_chats AS uc ON c.id = uc.chat_id
+            WHERE uc.user_id = :user_id
+        ";
+    
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['user_id' => $userId]);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? null;
+    }
 }
 ?>

@@ -1,6 +1,7 @@
 <?php
 namespace BE;
 
+require_once 'BE\config.php';
 require_once 'BE\database\Migration.php';
 require_once 'BE\seeding\Seeder.php';
 
@@ -44,6 +45,11 @@ class cli{
             case 'test':
                 require 'BE\test_json.php';
                 break;
+
+            case 'dir':
+                echo BASE_PATH;
+                break;
+
             default:
                 $this->invalidCommand($command);
                 break;
