@@ -8,7 +8,7 @@
     <!-- import styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="components/sidebar-chat/sidebar-chat.css">
-    <link rel="stylesheet" href="components/main//main.css">
+    <link rel="stylesheet" href="components/main/main.css">
     <link rel="stylesheet" href="components/messages-coming/messages-coming.css">
     <link rel="stylesheet" href="components/messages-sending/messages-sending.css">
 </head>
@@ -20,22 +20,16 @@
                 <input type="text">
             </div>
             <div id="sidebar-content-chats">
-                <?php
-                    for($i = 1; $i <= 5; $i++){
-                        include('components/sidebar-chat/sidebar-chat.html');
-                    }
-                    
-                ?>
+                <!-- chats -->
             </div>
         </div>
     </div>
 
     <div id="main">
-        <?php
-            include('components/main/main.php');
-        ?>
+        <!-- main con header e chat -->
     </div>
     <!-- import js -->
+    <script src="index.js"></script>
     <script src="components/sidebar-chat/sidebar-chat.js"></script>
 </body>
 </html>

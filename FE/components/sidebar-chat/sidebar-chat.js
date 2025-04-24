@@ -1,17 +1,23 @@
-// document.addEventListener('DOMContentLoaded', function ()
-// {
+document.addEventListener('DOMContentLoaded', function ()
+{
+    loadChats()
+    
+});
 
-//     document.querySelectorAll('.chat').forEach(chat => {
-//         chat.classList.remove('active');
-
-//         chat.addEventListener('click', function () {
-
-//             document.querySelectorAll('.chat').forEach(c => {
-//                 c.classList.remove('active');
-//             });
-//             chat.classList.add('active');
-//         });
-//     });
-
-
-// });
+function loadChats() {
+    fetch('components/sidebar-chat/sidebar-chat.html')
+    .then(res =>{
+        
+        if (!res.ok){
+            throw new Error("file html non trovato")
+            }
+        return res.text()
+    })
+    .then(data => {
+        const container = document.getElementById('sidebar-content-chats');
+        container.innerHTML = data;
+    })
+    .catch(error =>{
+        console.error('Errore nel caricare il file:', error);
+    })
+}
