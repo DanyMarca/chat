@@ -1,0 +1,74 @@
+<?php
+namespace BE\Controllers;
+
+session_start();
+
+require_once BASE_PATH . 'BE\Models\User.php';
+require_once BASE_PATH . 'BE\database\Database.php';
+
+use BE\database\Database;
+
+class AuthController{
+    
+    public static function login($email, $password) {
+        $db = Database::getConnection();
+
+        $sql = "SELECT * FROM Users WHERE email = :email";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['email' => $email]);
+
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if (!$user || !password_verify($password, $user['password'])) {
+            return json_encode([
+                'status' => 'error',
+                'message' => 'Credenziali non valide'
+            ]);
+        }
+
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['last_activity'] = time();
+        return json_encode([
+            'status' => 'success',
+            'data' => [
+                'id' => $user['id'],
+                'email' => $user['email'],
+                'name' => $user['name'],
+                'created_at' => $user['created_at'],
+                ]
+        ]);
+    }
+
+    public static function isLogged(){
+        if(isset($_SESSION['user_id'])){
+            return json_encode([
+                'status' => 'success',
+                'data' => 'user is logged'
+            ]);
+        }else{
+            return json_encode([
+                'status' => 'error',
+                'data' => 'user is not logged'
+            ]);
+        }
+
+    }
+
+
+
+    public static function sessiottl() {
+        $timeout_duration = 1800; // 30 minuti
+    
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
+        session_unset();
+        session_destroy();
+        return json_encode([
+            'status' => 'error',
+            'message' => 'Sessione scaduta'
+        ]);
+    }
+    
+    $_SESSION['last_activity'] = time(); // aggiorna l'attività
+    
+    }
+}

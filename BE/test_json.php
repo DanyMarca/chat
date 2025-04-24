@@ -6,14 +6,18 @@ require_once __DIR__ . '/database/Database.php';
 
 use BE\database\Database;
 
-try {
-    $pdo = Database::getConnection();
+session_start();
 
-    $stmt = $pdo->query("SELECT * FROM Users");
-    $messages = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+$_SESSION['user_id'] = 1;
+echo $_SESSION['user_id'];
+// try {
+//     $pdo = Database::getConnection();
 
-    echo json_encode($messages, JSON_PRETTY_PRINT) . PHP_EOL;
+//     $stmt = $pdo->query("SELECT * FROM Users");
+//     $messages = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-} catch (\PDOException $e) {
-    echo "Errore durante il recupero dei messaggi: " . $e->getMessage();
-}
+//     echo json_encode($messages, JSON_PRETTY_PRINT) . PHP_EOL;
+
+// } catch (\PDOException $e) {
+//     echo "Errore durante il recupero dei messaggi: " . $e->getMessage();
+// }
