@@ -16,4 +16,12 @@ class UserController{
             'data'=>$users
         ]);
     }
+
+    public static function show($id){
+        $users = User::Find($id);
+        return json_encode([
+            'status'=>'succsess',
+            'data'=>$users
+        ]);
+    }
 }

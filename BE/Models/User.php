@@ -75,6 +75,24 @@ class User{
         return $users;
     }
 
+    public static function Find($id){
+        $db = Database::getConnection();
+
+        $sql= "
+            SELECT u.*
+            FROM Users AS u
+            where id = :id
+        ";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $user['cahts'] = self::getChatsForUser($db, $user['id']) ?? null;
+
+        return $user;
+    }
+
     protected static function getChatsForUser($db, $userId) {
         $sql = "
             SELECT c.*

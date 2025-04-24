@@ -10,20 +10,22 @@ use BE\Controllers\UserController;
 header("Content-type: application/json");
 
 $requestURI = explode('?',  $_SERVER['REQUEST_URI'])[0];
-$requestURI = str_replace('/chat/BE', '', $requestURI);
+$requestURI = str_replace('/chat/BE/', '', $requestURI);
 $requestURI = strtolower($requestURI);
 
-switch($requestURI){
-    
-    case '/api/users':
-            $responce = UserController::index();
-            echo $responce;
-        break;
-
-    default:
-        http_response_code(404);
-        echo json_encode([
-            'error'  => 'Endpoint non trovato',
-            'call' => $requestURI
-        ]);
+if ($requestURI === 'api/users') {
+    $response = UserController::index();
+    echo $response;
+}
+elseif (preg_match('#^api/users/(\d+)$#', $requestURI, $match)) {
+    $userID = $match[1];
+    $response = UserController::show($userID);
+    echo $response;
+}
+else {
+    http_response_code(404);
+    echo json_encode([
+        'error' => 'Endpoint non trovato',
+        'call' => $requestURI
+    ]);
 }
