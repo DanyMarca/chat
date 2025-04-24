@@ -16,17 +16,17 @@ class Seeder{
     }
     echo "---Userfactory---\n";
 
-    for ($i = 0; $i < self::$obj_n; $i++) {
+    for ($i = 0; $i < self::$obj_n *3; $i++) {
         ChatFactory::create();
     }
     echo "---Chatfactory---\n";
 
-    for ($i = 0; $i < self::$obj_n; $i++) {
+    for ($i = 0; $i < self::$obj_n *10; $i++) {
         MessageFactory::create();
     }
     echo "---MessageFactory---\n";
 
-    for ($i = 0; $i < self::$obj_n; $i++) {
+    for ($i = 0; $i < self::$obj_n *5; $i++) {
         User_ChatFactory::create();
     }
     echo "---User_ChatFactory---\n";

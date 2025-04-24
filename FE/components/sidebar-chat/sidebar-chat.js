@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function loadChats() {
     Promise.all([
-        fetch('http://localhost/chat/BE/Api/Users/2').then(res => res.json()),
+        fetch('http://localhost/chat/BE/Api/Users/1').then(res => res.json()),
         fetch('components/sidebar-chat/sidebar-chat.html').then(res => res.text()),
     ])
         .then(([responce, HTMLTemplate]) => {
@@ -31,7 +31,7 @@ function renderChatsFromTemplate(chats, template) {
 
         // Riempie i dati
         chatElement.querySelector('.chat-name').textContent = chat.name;
-        chatElement.querySelector('.status-text').textContent = chat.status;
+        chatElement.querySelector('.status-text').textContent = chat.status ?? 'unknown';
         chatElement.querySelector('.status-color').style.backgroundColor = chat.status === 'online' ? 'green' : 'gray';
         chatElement.querySelector('.chat-image').style.backgroundImage = `url(${chat.image_url || 'images/default.jpg'})`;
 
