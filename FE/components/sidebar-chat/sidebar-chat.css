@@ -1,4 +1,4 @@
-.chat{
+.chat {
     padding: 12px;
     height: 8vh;
     display: flex;
@@ -9,50 +9,48 @@
     transition: all 0.2s ease-in-out;
     overflow: hidden;
 }
-.chat:hover{
+
+.chat:hover {
     background-color: var(--sidebar-hilight-50);
-    transition: all 0.2s ease-in-out;
 }
 
-.chat:focus{
+.chat:focus {
     background-color: var(--sidebar-hilight);
 }
 
-div#chat-image{
+.chat-image {
     height: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     background-image: url(../../images/image1.jpg);
-    background-size: cover ;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-div#chat-content{
+.chat-content {
     color: var(--messages-text-colo);
-    
-}
-h1#main-header-chat-name{
-    margin: 0px;
 }
 
-div#chat-status{
+.chat-status {
     display: flex;
     align-items: center;
 }
-div#status-color{
+
+.status-color {
     height: 12px;
-    aspect-ratio: 1/1;
-    align-items: center;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     background-color: gray;
     border: 1px solid gray;
 }
-h4#status-text{
+
+.status-text {
     color: var(--secondary-texts-color);
     margin: 0px;
 }
-h1#chat-name{
+
+.chat-name {
+    font-size: clamp(1rem, 1.5rem, 2rem);
     margin: 0px;
 }
-

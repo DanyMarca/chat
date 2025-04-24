@@ -70,7 +70,7 @@ class User{
         $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         
         foreach($users as &$user){
-            $user['cahts'] = self::getChatsForUser($db, $user['id']) ?? null;
+            $user['chats'] = self::getChatsForUser($db, $user['id']) ?? null;
         }
         return $users;
     }
@@ -88,7 +88,7 @@ class User{
         $stmt->execute(['id' => $id]);
 
         $user = $stmt->fetch(\PDO::FETCH_ASSOC);
-        $user['cahts'] = self::getChatsForUser($db, $user['id']) ?? null;
+        $user['chats'] = self::getChatsForUser($db, $user['id']) ?? null;
 
         return $user;
     }

@@ -9,7 +9,9 @@
     --chat-message-bg-mine:#9CC5A1;
 
     --messages-text-colo: #DCE1DE;
-    --secondary-texts-color:#9b9b9b ;
+    --secondary-texts-color:#9b9b9b;
+
+    --text-primary-font-size: 1.5rem;
 }
 /* * {
     box-sizing: border-box;
@@ -27,6 +29,11 @@ div#sidebar{
     height: 100vh;
     display: flex;
     flex-direction: column;
+    
+    min-width: 100px;
+    max-width: 300px;
+    overflow: auto;
+    resize: horizontal;
 }
 
 div#sidebar-content-search{
