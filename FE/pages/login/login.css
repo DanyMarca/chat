@@ -1,0 +1,86 @@
+/* Aggiungi alcune basi per il login */
+#login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--sidebar-background);
+    color: var(--messages-text-colo);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#login h2 {
+    font-size: var(--text-primary-font-size);
+    margin-bottom: 20px;
+    color: var(--messages-text-colo);
+    text-align: center;
+}
+
+/* Modifica gli input e il bottone */
+#login-form {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--sidebar-hilight-50);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#login-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--sidebar-search-bg);
+    color: var(--messages-text-colo);
+    font-size: 1rem;
+}
+
+#login-form input:focus {
+    border-color: var(--sidebar-hilight);
+    outline: none;
+}
+
+/* Pulsante */
+#login-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--sidebar-hilight);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#login-form button:hover {
+    background-color: var(--sidebar-hilight-50);
+}
+
+/* Stile di feedback per errori o messaggi */
+.error-message {
+    color: #ff4d4d;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Media queries per dispositivi mobili */
+@media (max-width: 600px) {
+    #login-form {
+        padding: 15px;
+    }
+
+    #login-form input,
+    #login-form button {
+        font-size: 0.9rem;
+    }
+
+    #login h2 {
+        font-size: 1.2rem;
+    }
+}
