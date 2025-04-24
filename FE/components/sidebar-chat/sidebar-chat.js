@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function () {
-    loadChats()
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//     loadChats()
+// });
 
 
 

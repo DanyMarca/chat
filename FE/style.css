@@ -21,47 +21,5 @@ body{
     margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
-}
-
-div#sidebar{
-    background-color: var(--sidebar-background);
-    width: 30%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    
-    min-width: 100px;
-    max-width: 300px;
-    overflow: auto;
-    resize: horizontal;
-}
-
-div#sidebar-content-search{
-    height: 10vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-
-div#sidebar-content-search input{
-    background-color: var(--sidebar-search-bg);
-    height: 4vh;
-    width: 60%;
-    color: var(--messages-text-colo);
-}
-
-div#sidebar-content-chats{
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#main {
-    /* background-color: red; */
-    height: 100vh;
     flex: 1;
-    display: flex;
-    flex-direction: column;
 }

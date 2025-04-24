@@ -14,13 +14,13 @@ $requestURI = str_replace('/chat/BE/', '', $requestURI);
 $requestURI = strtolower($requestURI);
 
 if ($requestURI === 'api/users') {
-    $response = UserController::index();
-    echo $response;
+    $responce = UserController::index();
+    echo $responce;
 }
 elseif (preg_match('#^api/users/(\d+)$#', $requestURI, $match)) {
     $userID = $match[1];
-    $response = UserController::show($userID);
-    echo $response;
+    $responce = UserController::show($userID);
+    echo $responce;
 }
 else {
     http_response_code(404);
