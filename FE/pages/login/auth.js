@@ -3,18 +3,16 @@ document.addEventListener('DOMContentLoaded', async function (e) {
 });
 
 function login(){
-    console.log("login");
-    
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     
-    fetch("http://localhost/chat/BE/api/login", {
+    fetch(`${API_BASE_URL}/login`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        credentials: "include",  // Assicurati di usare i cookies se il backend usa sessioni
+        credentials: "include",
         body: JSON.stringify({
             email: email,
             password: password
@@ -23,7 +21,7 @@ function login(){
     .then(res => res.json())
     .then(responce => {
         if (responce.status === "success") {
-            alert("Login avvenuto con successo");
+            // alert("Login avvenuto con successo");
             localStorage.setItem('user_id', responce.data.id);
             loadIndex();
         } else {
@@ -34,6 +32,7 @@ function login(){
         console.error("Errore login:", err);
         alert('Errore di connessione.');
     });
+    console.log("login");
 }
 
 function logout() {
@@ -41,7 +40,8 @@ function logout() {
 }
 
 function isLoggedIn() {
-    return fetch('http://localhost/chat/BE/api/sessioncheck', {
+    // console.log('API_BASE_URL/sessioncheck');
+    return fetch(`${API_BASE_URL}/sessioncheck`, {
         credentials: 'include'
     })
     .then(res => res.json())

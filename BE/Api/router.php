@@ -16,23 +16,34 @@ class Router {
     
     // Costruttore
     public function __construct() {
-        // Impostazioni di sessione
         
-        ini_set('session.cookie_httponly', 1);
-        ini_set('session.cookie_secure', 1); // se usi HTTPS
-        ini_set('session.use_strict_mode', 1);
-
-        // Avvia la sessione
-        session_start();
 
         // Impostazione intestazioni
         header("Content-type: application/json");
-        // SOLO per sviluppo, non per produzione!
-        header("Access-Control-Allow-Origin: *");
+        
+        
+        $origin = "http://". $_SERVER['HTTP_HOST'];
+        Log::info("origin is: ".$origin);
+
+        $allowed_origins = [
+            'http://localhost',
+            'http://127.0.0.1',
+            'http://'.$_SERVER['SERVER_ADDR'],
+            'http://'.strtolower(gethostname()),
+
+        ];
+        // Log::info(json_encode($allowed_origins));
+
+        if(in_array($origin, $allowed_origins)){
+        header("Access-Control-Allow-Origin: $origin");
+        Log::info('passa: '. $origin);
+
+        }
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type");
         header("Access-Control-Allow-Credentials: true");
 
+        
     }
 
     // Gestione della richiesta
@@ -49,7 +60,6 @@ class Router {
             
         } elseif (preg_match('#^api/users/(\d+)$#', $requestURI, $match)) {//# epr avere definire inizio e fine della stringa, (\d+) per dire che ci potrebbe essere uno o più decimali
             $userID = $match[1];
-            Log::info(json_encode($match));
             echo UserController::show($userID); //chat per l'utente
         }
         // AUTH------------------------------------
@@ -79,6 +89,13 @@ class Router {
             }
         }
         // DEFAULT------------------------------------
+
+        elseif ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            // Se è una richiesta OPTIONS, rispondi con un 200 OK
+            http_response_code(200);
+            exit();  // Termina l'esecuzione per evitare che venga processata come una richiesta GET/POST
+        }
+
         else {
             // Default: rotte non trovate
             http_response_code(404);

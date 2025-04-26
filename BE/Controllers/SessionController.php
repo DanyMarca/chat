@@ -34,9 +34,10 @@ class SessionController {
 
     private static function respond($loggedin, $message = '', $data = []) {
         header('Content-Type: application/json');
+
         Log::info('Session: '. $loggedin .
                 '; '. $message.
-                '$data: '.json_encode($data).'; ' );
+                '$data: '.json_encode($_SESSION).'; '.'\n' );
         echo json_encode([
             'status' => $loggedin ? 'success' : 'error',
             'loggedin' => $loggedin,

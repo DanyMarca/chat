@@ -9,3 +9,4 @@ $host = $_SERVER['HTTP_HOST'];
 
 // Questo sarà letto nel frontend
 const API_BASE_URL = "http://<?php echo $host; ?>/chat/BE/api";
+console.log(API_BASE_URL);

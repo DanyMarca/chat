@@ -8,8 +8,17 @@ require_once BASE_PATH . 'BE\logs\Log.php';
 use BE\database\Database;
 use BE\logs\Log;
 
+$path = session_save_path();
+$files = scandir($path);
 
-Log::info('suka');
+foreach ($files as $file) {
+    if (strpos($file, 'sess_') === 0) {
+        echo "FILE: $file\n";
+        echo file_get_contents($path . DIRECTORY_SEPARATOR . $file);
+        echo "\n\n";
+    }
+}
+
 // session_start();
 // session_unset();
 // session_destroy();
