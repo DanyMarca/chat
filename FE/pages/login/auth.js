@@ -32,7 +32,7 @@ function login(){
         console.error("Errore login:", err);
         alert('Errore di connessione.');
     });
-    console.log("login");
+    // console.log("login");
 }
 
 function logout() {

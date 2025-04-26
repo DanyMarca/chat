@@ -1,0 +1,18 @@
+.keyboard{
+    width: 100%;
+    /* flex:1; */
+    position: fixed;
+    height: 10vh;
+    bottom: 0px;
+    background-color: blue;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyboard-content{
+    background-color: red;
+    height: 10px;
+    width: 10px;
+}

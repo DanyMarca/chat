@@ -25,7 +25,7 @@ function renderChatsFromTemplate(chats, template) {
     // container.innerHTML = ''; // Pulisce prima
 
     chats.forEach(chat => {
-        // Crea un DOM temporaneo
+        
         const temp = document.createElement('div');
         temp.innerHTML = template;
         const chatElement = temp.firstElementChild;

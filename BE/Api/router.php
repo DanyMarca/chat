@@ -2,12 +2,14 @@
 namespace BE\Api;
 
 require_once  __DIR__ . '/../config.php';
-require_once BASE_PATH . "BE\Controllers/UserController.php";
+require_once BASE_PATH . "BE\Controllers\UserController.php";
+require_once BASE_PATH . "BE\Controllers\ChatController.php";
 require_once BASE_PATH . "BE\controllers\Authcontroller.php";
 require_once BASE_PATH . "BE\controllers\Sessioncontroller.php";
 require_once BASE_PATH . 'BE\logs\Log.php';
 
 use BE\Controllers\UserController;
+use BE\Controllers\ChatController;
 use BE\Controllers\AuthController;
 use BE\Controllers\Sessioncontroller;
 use BE\logs\Log;
@@ -61,6 +63,12 @@ class Router {
         } elseif (preg_match('#^api/users/(\d+)$#', $requestURI, $match)) {//# epr avere definire inizio e fine della stringa, (\d+) per dire che ci potrebbe essere uno o più decimali
             $userID = $match[1];
             echo UserController::show($userID); //chat per l'utente
+        }
+
+        // CHAT------------------------------------
+        elseif (preg_match('#^api/chat/(\d+)$#', $requestURI, $match)) {
+            $userID = $match[1];
+            echo ChatController::show($userID); //chat per l'utente
         }
         // AUTH------------------------------------
         

@@ -11,11 +11,14 @@
     --messages-text-colo: #DCE1DE;
     --secondary-texts-color:#9b9b9b;
 
+    --messages-coming-bg-colo: #6a994e;
+    --messages-sending-bg-colo: #a7c957;
+
     --text-primary-font-size: 1.5rem;
 }
-/* * {
+* {
     box-sizing: border-box;
-} */
+}
 
 body{
     margin: 0px;
