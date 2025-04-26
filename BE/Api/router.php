@@ -5,10 +5,12 @@ require_once  __DIR__ . '/../config.php';
 require_once BASE_PATH . "BE\Controllers/UserController.php";
 require_once BASE_PATH . "BE\controllers\Authcontroller.php";
 require_once BASE_PATH . "BE\controllers\Sessioncontroller.php";
+require_once BASE_PATH . 'BE\logs\Log.php';
 
 use BE\Controllers\UserController;
 use BE\Controllers\AuthController;
 use BE\Controllers\Sessioncontroller;
+use BE\logs\Log;
 
 class Router {
     
@@ -25,29 +27,59 @@ class Router {
 
         // Impostazione intestazioni
         header("Content-type: application/json");
+        // SOLO per sviluppo, non per produzione!
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
+        header("Access-Control-Allow-Credentials: true");
+
     }
 
     // Gestione della richiesta
     public function handleRequest() {
-        // Ottieni la richiesta
-        $requestURI = explode('?', $_SERVER['REQUEST_URI'])[0];
-        $requestURI = str_replace('/chat/BE/', '', $requestURI);
-        $requestURI = strtolower($requestURI);
 
-        // Gestione delle rotte
+        $requestURI = explode('?', $_SERVER['REQUEST_URI'])[0];  //togliamo una possibile query
+        $requestURI = str_replace('/chat/BE/', '', $requestURI);    //togliamo tutto quello che viene prima dell'url che ci interessa
+        $requestURI = strtolower($requestURI); //tutto in caratteri minuscoli
+
+
+        // USER------------------------------------
         if ($requestURI === 'api/users') {
-            echo UserController::index();
-        } elseif (preg_match('#^api/users/(\d+)$#', $requestURI, $match)) {
+            echo UserController::index(); //tutti gli utenti con le loro chat
+            
+        } elseif (preg_match('#^api/users/(\d+)$#', $requestURI, $match)) {//# epr avere definire inizio e fine della stringa, (\d+) per dire che ci potrebbe essere uno o più decimali
             $userID = $match[1];
-            echo UserController::show($userID);
-        } elseif ($requestURI === 'api/login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            Log::info(json_encode($match));
+            echo UserController::show($userID); //chat per l'utente
+        }
+        // AUTH------------------------------------
+        
+        elseif ($requestURI === 'api/login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = json_decode(file_get_contents('php://input'), true);
             echo AuthController::login($data['email'], $data['password']);
+
         } elseif ($requestURI === 'api/islogged') {
             echo AuthController::isLogged();
+
         } elseif ($requestURI === 'api/sessioncheck') {
             echo Sessioncontroller::sessionCheck();
-        } else {
+        }
+        elseif ($requestURI === 'api/me') {
+            
+            switch (session_status()) {
+                case PHP_SESSION_DISABLED:
+                    echo "Sessioni disabilitate nel server.";
+                    break;
+                case PHP_SESSION_NONE:
+                    echo "Nessuna sessione attiva.";
+                    break;
+                case PHP_SESSION_ACTIVE:
+                    echo "Sessione già avviata.";
+                    break;
+            }
+        }
+        // DEFAULT------------------------------------
+        else {
             // Default: rotte non trovate
             http_response_code(404);
             echo json_encode([

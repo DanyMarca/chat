@@ -3,8 +3,13 @@ namespace BE;
 
 // Includi manualmente il file Database.php
 require_once __DIR__ . '/database/Database.php';
+require_once BASE_PATH . 'BE\logs\Log.php';
 
 use BE\database\Database;
+use BE\logs\Log;
+
+
+Log::info('suka');
 // session_start();
 // session_unset();
 // session_destroy();

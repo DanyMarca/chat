@@ -24,4 +24,5 @@ class UserController{
             'data'=>$users
         ]);
     }
+
 }

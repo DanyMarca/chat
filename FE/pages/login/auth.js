@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async function (e) {
 });
 
 function login(){
-    
+    console.log("login");
     
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -25,7 +25,6 @@ function login(){
         if (responce.status === "success") {
             alert("Login avvenuto con successo");
             localStorage.setItem('user_id', responce.data.id);
-            alert(responce.data.id);
             loadIndex();
         } else {
             alert('❌ Credenziali errate!');
@@ -47,7 +46,10 @@ function isLoggedIn() {
     })
     .then(res => res.json())
     .then(data => {
-        return data.loggedin;
+        return {
+            'isLogged': data.loggedin,
+            'user_id': data.data.user_id,
+        };
     })
     .catch(err => {
         console.error("Errore nella fetch:", err);

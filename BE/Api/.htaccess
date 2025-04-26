@@ -4,3 +4,14 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ router.php [QSA,L]
+
+# Indica ad Apache di usare un php.ini personalizzato
+php_value session.cookie_httponly 1
+php_value session.cookie_secure 0
+php_value session.use_strict_mode 1
+php_value session.gc_maxlifetime 900
+
+# Log degli errori
+php_value display_errors On
+php_value log_errors On
+php_value error_log "logs/php-error.log"

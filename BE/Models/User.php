@@ -75,7 +75,8 @@ class User{
         return $users;
     }
 
-    public static function Find($id){
+    public static function Find(){
+        $id = $_SESSION['user_id'];
         $db = Database::getConnection();
 
         $sql= "

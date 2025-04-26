@@ -12,11 +12,13 @@
 
 .chat:hover {
     background-color: var(--sidebar-hilight-50);
+    height: 10vh;
 }
 
 .chat:focus {
     background-color: var(--sidebar-hilight);
 }
+
 
 .chat-image {
     height: 100%;

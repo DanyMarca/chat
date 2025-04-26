@@ -1,6 +1,6 @@
 const routes = [
-    { path: '/', page: 'home', handler: loadHome },
-    // { path: '/about', page: 'about', handler: loadAbout },
+    { path: '/', page: 'home', handler: loadIndex },
+    // { path: '/me', page: 'me', handler: loadAbout },
     // { path: '/contact', page: 'contact', handler: loadContact },
 ];
 
@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', async function (e) {
 
 async function loadIndex() {
     const isLogged = await isLoggedIn();
-    console.log(isLogged);
+    // console.log('isLogged:' + isLogged.user_id);
     
-    if(isLogged){
+    if(isLogged.isLogged){
         
         loadHome();
         loadChats();
@@ -25,7 +25,7 @@ async function loadIndex() {
 
 
 async function loadHome() {
-    fetch('pages/home/home.html')
+    fetch('./pages/home/home.html')
     .then(res  => res.text())
     .then(html  => {
         document.getElementById("app").innerHTML = ""
@@ -38,7 +38,7 @@ async function loadHome() {
 }
 
 async function loadLogin() {
-    fetch('pages/login/login.html')
+    fetch('./pages/login/login.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById("app").innerHTML = ""

@@ -1,13 +1,16 @@
 <?php
 namespace BE\Controllers;
 
+require_once BASE_PATH . 'BE\logs\Log.php';
+
+use BE\logs\Log;
+
 class SessionController {
 
     public static function sessionCheck() {
         
 
         $timeout_duration = 900; // 15 minuti
-        $response = [];
 
         if (!isset($_SESSION['user_id'])) {
             self::respond(false);
@@ -25,12 +28,15 @@ class SessionController {
 
         self::respond(true, 'Utente loggato', [
             'user_id' => $_SESSION['user_id'],
-            'username' => $_SESSION['username'] ?? null
+            'email' => $_SESSION['email'] ?? null
         ]);
     }
 
     private static function respond($loggedin, $message = '', $data = []) {
         header('Content-Type: application/json');
+        Log::info('Session: '. $loggedin .
+                '; '. $message.
+                '$data: '.json_encode($data).'; ' );
         echo json_encode([
             'status' => $loggedin ? 'success' : 'error',
             'loggedin' => $loggedin,
