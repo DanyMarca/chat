@@ -35,7 +35,7 @@ function renderChatsFromTemplate(chats, template) {
         chatElement.querySelector('.chat-name').textContent = chat.name;
         chatElement.querySelector('.status-text').textContent = chat.status ?? 'unknown';
         chatElement.querySelector('.status-color').style.backgroundColor = chat.status === 'online' ? 'green' : 'gray';
-        chatElement.querySelector('.chat-image').style.backgroundImage = `url(${chat.image_url || 'images/default.jpg'})`;
+        chatElement.querySelector('.chat-image').style.backgroundImage = `url(${chat.image_url || 'assets/default.jpg'})`;
 
         chatElement.addEventListener('click', () =>{
             const chatID = chatElement.getAttribute('chat-id');
