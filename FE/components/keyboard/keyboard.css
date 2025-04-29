@@ -12,7 +12,7 @@
     padding: 12px 24px;
     border-radius: 36px;
 
-    background-color: var(--sidebar-background);
+    background-color: var(--chat-background);
 
     display: flex;
     justify-content: space-between;
@@ -29,18 +29,34 @@
 .keyboard-content input {
     flex: 1;
     padding: 10px;
+    border-radius: 12px;
+    /* border: none; */
+    border-left: none;
+    border-right: none;
+    background-color: var(--chat-background);
+    border-color: var(--keyboard-border-color);
+    transition: all 0.2s ease-in-out;
+}
 
-
+.keyboard-content input:focus{
     background-color: var(--sidebar-background);
 }
 
 .keyboard-content button {
     padding: 10px 20px;
+    border-radius: 12px;
+
     aspect-ratio: 1/1;
     background-image: url("../../assets/right-arrow.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 80%;
 
+    
     background-color: var(--sidebar-background);
+}
+
+.keyboard-content button:hover {
+    background-color: var(--sidebar-hilight);
 }

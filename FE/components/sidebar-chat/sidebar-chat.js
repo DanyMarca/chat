@@ -37,10 +37,19 @@ function renderChatsFromTemplate(chats, template) {
         chatElement.querySelector('.status-color').style.backgroundColor = chat.status === 'online' ? 'green' : 'gray';
         chatElement.querySelector('.chat-image').style.backgroundImage = `url(${chat.image_url || 'assets/default.jpg'})`;
 
-        chatElement.addEventListener('click', () =>{
-            const chatID = chatElement.getAttribute('chat-id');
-            openChat(chatID);
-        })
+        chatElement.addEventListener('click', () => {
+            isLoggedIn().then(obj => {
+                console.log('chat: ', obj.isLogged);
+                
+                if (obj.isLogged) {
+                    const chatID = chatElement.getAttribute('chat-id');
+                    openChat(chatID);
+                } else {
+                    loadLogin();
+                }
+            });
+        });
+        
 
         container.appendChild(chatElement);
     });

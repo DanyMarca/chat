@@ -38,7 +38,7 @@ class Router {
 
         if(in_array($origin, $allowed_origins)){
         header("Access-Control-Allow-Origin: $origin");
-        Log::info('passa: '. $origin);
+        // Log::info('passa: '. $origin);
 
         }
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS");

@@ -53,7 +53,10 @@ function isLoggedIn() {
     })
     .catch(err => {
         console.error("Errore nella fetch:", err);
-        return false;
+        return {
+            isLogged: false,
+            user_id: null
+        };
     });
 }
 
