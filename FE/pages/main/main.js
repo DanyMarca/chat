@@ -40,7 +40,7 @@ function insertKeyboard(mainChat, keyboardHTML) {
 // Funzione per riempire l'intestazione della chat (nome e immagine)
 function fillHeader(mainChat, chatData) {
     mainChat.querySelector('.main-header-chat-name').textContent = chatData?.name || "Chat senza nome";
-    mainChat.querySelector('.main-header-profile-image').style.backgroundImage = `url(${chatData?.image_url || 'images/default.jpg'})`;
+    mainChat.querySelector('.main-header-profile-image').style.backgroundImage = `url(${chatData?.image_url || 'assets/default.jpg'})`;
 }
 
 // Funzione per caricare i messaggi nella chat

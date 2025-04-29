@@ -14,7 +14,6 @@ async function makeMessage(info, user_id) {
     message.querySelector('.message-owner').textContent=info.user_id
 
     if (info.user_id == user_id) {
-        console.log("ciao");
         message.classList.add('sending');
     }
     else {

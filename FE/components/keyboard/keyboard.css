@@ -7,15 +7,24 @@
 
 .keyboard-content {
     width: 100%;
-    max-width: 700px;
-    display: flex;
+    max-width: 900px;
     gap: 10px;
-    background-color: red;
     padding: 12px 24px;
     border-radius: 36px;
 
     background-color: var(--sidebar-background);
+
+    display: flex;
+    justify-content: space-between;
 }
+
+.keyboard-content form{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
 
 .keyboard-content input {
     flex: 1;
@@ -27,7 +36,11 @@
 
 .keyboard-content button {
     padding: 10px 20px;
-
+    aspect-ratio: 1/1;
+    background-image: url("../../assets/right-arrow.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
     background-color: var(--sidebar-background);
 }
