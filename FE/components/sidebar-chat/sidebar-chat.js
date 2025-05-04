@@ -39,8 +39,6 @@ function renderChatsFromTemplate(chats, template) {
 
         chatElement.addEventListener('click', () => {
             isLoggedIn().then(obj => {
-                console.log('chat: ', obj.isLogged);
-                
                 if (obj.isLogged) {
                     const chatID = chatElement.getAttribute('chat-id');
                     openChat(chatID);

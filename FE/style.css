@@ -8,7 +8,7 @@
     --chat-message-bg-others:#49A078;
     --chat-message-bg-mine:#9CC5A1;
 
-    --messages-text-colo: #DCE1DE;
+    --messages-text-color: #DCE1DE;
     --secondary-texts-color:#9b9b9b;
 
     --messages-coming-bg-colo: #6a994e;
@@ -17,6 +17,8 @@
     --text-primary-font-size: 1.5rem;
 
     --keyboard-border-color: #cad0cc9c;
+
+    --sidebar-settings-list-bg: #c0c0c0;
 }
 * {
     box-sizing: border-box;

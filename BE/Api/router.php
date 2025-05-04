@@ -25,7 +25,7 @@ class Router {
         
         
         $origin = "http://". $_SERVER['HTTP_HOST'];
-        Log::info("origin is: ".$origin);
+        // Log::info("origin is: ".$origin);
 
         $allowed_origins = [
             'http://localhost',
@@ -81,6 +81,10 @@ class Router {
 
         } elseif ($requestURI === 'api/sessioncheck') {
             echo Sessioncontroller::sessionCheck();
+        }
+
+        elseif ($requestURI === 'api/logout') {
+            echo AuthController::logOut();
         }
         elseif ($requestURI === 'api/me') {
             

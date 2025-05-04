@@ -6,7 +6,7 @@ div#sidebar{
     display: flex;
     flex-direction: column;
     
-    min-width: 100px;
+    min-width: 300px;
     max-width: 600px;
     overflow: auto;
     resize: horizontal;
@@ -15,16 +15,20 @@ div#sidebar{
 div#sidebar-content-search{
     height: 10vh;
     display: flex;
-    justify-content: center;
+    justify-content:space-between;
     align-items: center;
     
+    gap: 12px;
+    padding: 0 12px;
 }
 
-div#sidebar-content-search input{
-    background-color: var(--sidebar-search-bg);
+.sidebar-search{
     height: 4vh;
-    width: 60%;
-    color: var(--messages-text-colo);
+    width: 100%;
+    border-radius: 8px;
+    background-color: var(--sidebar-search-bg);
+    color: var(--messages-text-color);
+
 }
 
 div#sidebar-content-chats{
@@ -41,4 +45,68 @@ div#sidebar-content-chats{
     display: flex;
     flex-direction: column;
     background-color: var(--sidebar-background);
+}
+
+#sidebar-user-settings{
+    height: 80%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+
+    background-color: red;
+
+    transition: all 0.2s ease-in-out;
+    
+    background-image: url('../../assets/user-placeholder.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#sidebar-user-settings:hover{
+    height: 90%;
+    cursor: pointer;
+}
+#sidebar-user-settings:focus{
+    height: 90%;
+    /* cursor: pointer; */
+}
+
+#user-settings-list {
+    background-color: var(--sidebar-settings-list-bg);
+    border: 1px solid var(--messages-text-color); /* fixato */
+    border-radius: 12px;
+    position: absolute;
+    top: 10vh;
+    padding: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+#sidebar-user-settings:focus-within #user-settings-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#user-settings-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#user-settings-list li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--sidebar-search-bg);
+    border-radius: 24px;
+    transition: all 0.2s ease-in-out;
+}
+
+#user-settings-list li a:hover {
+    background-color: var(--sidebar-search-bg);
+    color: var(--sidebar-settings-list-bg);
 }

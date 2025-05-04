@@ -19,7 +19,7 @@
 }
 
 .main-header {
-    background-color: var(--messages-text-colo);
+    background-color: var(--messages-text-color);
     height: 10vh;
     width: 100%;
     display: flex;

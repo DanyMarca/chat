@@ -1,13 +1,15 @@
 .chat {
     padding: 12px;
     height: 8vh;
+    gap: 12px;
+    border-radius: 16px;
+
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    border-radius: 16px;
-    transition: all 0.2s ease-in-out;
     overflow: hidden;
+    
+    transition: all 0.2s ease-in-out;
 }
 
 .chat:hover {
@@ -28,10 +30,12 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+
+    
 }
 
 .chat-content {
-    color: var(--messages-text-colo);
+    color: var(--messages-text-color);
 }
 
 .chat-status {

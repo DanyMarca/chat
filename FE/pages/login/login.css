@@ -7,7 +7,7 @@
     width: 100vw;
     min-height: 100vh;
     background-color: var(--sidebar-background);
-    color: var(--messages-text-colo);
+    color: var(--messages-text-color);
     padding: 20px;
     box-sizing: border-box;
 }
@@ -15,7 +15,7 @@
 #login h2 {
     font-size: var(--text-primary-font-size);
     margin-bottom: 20px;
-    color: var(--messages-text-colo);
+    color: var(--messages-text-color);
     text-align: center;
 }
 
@@ -36,7 +36,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: var(--sidebar-search-bg);
-    color: var(--messages-text-colo);
+    color: var(--messages-text-color);
     font-size: 1rem;
 }
 

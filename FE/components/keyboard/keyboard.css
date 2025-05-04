@@ -33,13 +33,19 @@
     /* border: none; */
     border-left: none;
     border-right: none;
-    background-color: var(--chat-background);
     border-color: var(--keyboard-border-color);
+
+    background-color: var(--chat-background);
+    color: var(--sidebar-background);
+
+    font-size: 1.2rem;
+
     transition: all 0.2s ease-in-out;
 }
 
 .keyboard-content input:focus{
     background-color: var(--sidebar-background);
+    color: var(--chat-background);
 }
 
 .keyboard-content button {

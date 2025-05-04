@@ -3,8 +3,10 @@ namespace BE\Controllers;
 
 require_once BASE_PATH . 'BE\Models\User.php';
 require_once BASE_PATH . 'BE\database\Database.php';
+require_once BASE_PATH . 'BE\logs\Log.php';
 
 use BE\database\Database;
+use BE\logs\Log;
 
 class AuthController{
     
@@ -58,6 +60,15 @@ class AuthController{
                 'data' => 'user is not logged'
             ]);
         }
+    }
+
+    public static function logOut() {
+        // Log::info("unser");
+        session_unset();
+        return json_encode([
+            'status' => 'success',
+            'data' => 'user disconnected'
+        ]);
     }
     
 
