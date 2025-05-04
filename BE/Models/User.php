@@ -5,13 +5,13 @@ use BE\database\Database;
 
 class User{
     private ?int $id;
-    private string $name;
+    private string $username;
     private string $email;
     private string $password;
 
-    public function __construct(?int $id, string $name, string $email, string $password) {
+    public function __construct(?int $id, string $username, string $email, string $password) {
         $this->id = $id;
-        $this->name = $name;
+        $this->username = $username;
         $this->email = $email;
         $this->password = $password;
     }
@@ -20,8 +20,8 @@ class User{
         return $this->id;
     }
 
-    public function getName(): string {
-        return $this->name;
+    public function getusername(): string {
+        return $this->username;
     }
     public function getEmail(): string {
         return $this->email;
@@ -31,7 +31,7 @@ class User{
     }
 
     public static function create($data){
-        $user = new self($data['id'], $data['name'], $data['email'], $data['password']);
+        $user = new self($data['id'], $data['username'], $data['email'], $data['password']);
         $user->save();
         return $user;
     }
@@ -41,19 +41,19 @@ class User{
         $db = Database::getConnection();
     
         if ($this->id !== null) { // update
-            $sql = "UPDATE Users SET name = :name, email = :email, password = :password WHERE id = :id";
+            $sql = "UPDATE Users SET username = :username, email = :email, password = :password WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->execute([
-                ':name' => $this->name,
+                ':username' => $this->username,
                 ':email' => $this->email,
                 ':password' => $this->password,
                 ':id' => $this->id
             ]);
         } else { // insert
-            $sql = "INSERT INTO Users (name, email, password) VALUES (:name, :email, :password)";
+            $sql = "INSERT INTO Users (username, email, password) VALUES (:username, :email, :password)";
             $stmt = $db->prepare($sql);
             $stmt->execute([
-                ':name' => $this->name,
+                ':username' => $this->username,
                 ':email' => $this->email,
                 ':password' => $this->password,
             ]);

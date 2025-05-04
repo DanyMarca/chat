@@ -10,11 +10,11 @@ use BE\Models\User;
 class UserFactory {
     public static function makefake(): User {
         $id = null;
-        $name = "Utente_" . rand(1000, 9999);
-        $email = strtolower($name) . "@esempio.com";
+        $username = "Utente_" . rand(1000, 9999);
+        $email = strtolower($username) . "@esempio.com";
         $password = password_hash("password", PASSWORD_BCRYPT);
 
-        return new User($id, $name, $email, $password);
+        return new User($id, $username, $email, $password);
     }
 
     public static function create(): User {
