@@ -1,10 +1,12 @@
 async function openChat(chatID) {
     const main = document.getElementById('main');
+    main.setAttribute('chat_id', chatID);
     main.innerHTML = "";
 
     const [response, mainTemplate, keyboardTemplate] = await loadChatData(chatID);
 
     const mainChat = buildMainChat(mainTemplate);
+    
     insertKeyboard(mainChat, keyboardTemplate);
     fillHeader(mainChat, response.data.chat);
     await loadMessages(mainChat, response.data.messages, response.data.chat?.user_id);
@@ -41,6 +43,7 @@ function insertKeyboard(mainChat, keyboardHTML) {
 function fillHeader(mainChat, chatData) {
     mainChat.querySelector('.main-header-chat-name').textContent = chatData?.name || "Chat senza nome";
     mainChat.querySelector('.main-header-profile-image').style.backgroundImage = `url(${chatData?.image_url || 'assets/default.jpg'})`;
+    
 }
 
 // Funzione per caricare i messaggi nella chat

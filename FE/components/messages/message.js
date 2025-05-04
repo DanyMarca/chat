@@ -21,8 +21,3 @@ async function makeMessage(info, user_id) {
     }
     return message;
 }
-// "id": 22,
-// "created_at": "2025-04-24 14:29:56",
-// "user_id": 8,
-// "chat_id": 1,
-// "content": "Messaggio_997"

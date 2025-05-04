@@ -8,41 +8,33 @@ use BE\logs\Log;
 class SessionController {
 
     public static function sessionCheck() {
-        
-
         $timeout_duration = 900; // 15 minuti
 
         if (!isset($_SESSION['user_id'])) {
-            self::respond(false);
-            return;
+            return self::buildResponse(false);
         }
 
         if (!isset($_SESSION['last_activity']) || (time() - $_SESSION['last_activity']) > $timeout_duration) {
             session_unset();
             session_destroy();
-            self::respond(false, 'Sessione scaduta');
-            return;
+            return self::buildResponse(false, 'Sessione scaduta');
         }
 
         $_SESSION['last_activity'] = time(); // aggiorna attività
 
-        self::respond(true, 'Utente loggato', [
+        return self::buildResponse(true, 'Utente loggato', [
             'user_id' => $_SESSION['user_id'],
             'email' => $_SESSION['email'] ?? null
         ]);
     }
 
-    private static function respond($loggedin, $message = '', $data = []) {
-        header('Content-Type: application/json');
-
-        // Log::info('Session: '. $loggedin .
-                // '; '. $message.
-                // '$data: '.json_encode($_SESSION).'; '.'\n' );
-        echo json_encode([
+    private static function buildResponse($loggedin, $message = '', $data = []) {
+        return [
             'status' => $loggedin ? 'success' : 'error',
             'loggedin' => $loggedin,
             'message' => $message,
             'data' => $data
-        ]);
+        ];
     }
 }
+

@@ -10,7 +10,9 @@ use BE\Models\Chat;
 class ChatController{
 
     public static function show($id){
+
         $chat = Chat::show($id);
+        
         return json_encode([
             'status'=>'succsess',
             'data'=>$chat

@@ -6,11 +6,14 @@ require_once BASE_PATH . "BE\Controllers\UserController.php";
 require_once BASE_PATH . "BE\Controllers\ChatController.php";
 require_once BASE_PATH . "BE\controllers\Authcontroller.php";
 require_once BASE_PATH . "BE\controllers\Sessioncontroller.php";
+require_once BASE_PATH . "BE\controllers\MessageController.php";
+
 require_once BASE_PATH . 'BE\logs\Log.php';
 
 use BE\Controllers\UserController;
 use BE\Controllers\ChatController;
 use BE\Controllers\AuthController;
+use BE\Controllers\MessageController;
 use BE\Controllers\Sessioncontroller;
 use BE\logs\Log;
 
@@ -70,6 +73,13 @@ class Router {
             $userID = $match[1];
             echo ChatController::show($userID); //chat per l'utente
         }
+
+        // MESSAGE------------------------------------
+        elseif ($requestURI === 'api/sendmessage') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            echo MessageController::create($data);
+        }
+        
         // AUTH------------------------------------
         
         elseif ($requestURI === 'api/login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -80,8 +90,10 @@ class Router {
             echo AuthController::isLogged();
 
         } elseif ($requestURI === 'api/sessioncheck') {
-            echo Sessioncontroller::sessionCheck();
+            $data = Sessioncontroller::sessionCheck();
+            echo json_encode($data);
         }
+        
 
         elseif ($requestURI === 'api/logout') {
             echo AuthController::logOut();
