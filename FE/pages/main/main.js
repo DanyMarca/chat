@@ -6,13 +6,15 @@ async function openChat(chatID) {
     const [response, mainTemplate, keyboardTemplate] = await loadChatData(chatID);
 
     const mainChat = buildMainChat(mainTemplate);
-    
+
     insertKeyboard(mainChat, keyboardTemplate);
     fillHeader(mainChat, response.data.chat);
-    await loadMessages(mainChat, response.data.messages, response.data.chat?.user_id);
 
-    main.appendChild(mainChat);
+    main.appendChild(mainChat); // 👈 PRIMA questo
+
+    await loadMessages(mainChat, response.data.messages, response.data.chat?.user_id);
 }
+
 
 
 
@@ -52,20 +54,32 @@ async function loadLastMeesage(chat_id) {
     const response = await fetch(`${API_BASE_URL}/message/last/${chat_id}`);
     const lastMessage = await response.json();
 
-    console.log(lastMessage);
+    // console.log(lastMessage);
     const chatMessages = document.querySelector('.main-chat');
     const tempMessage = await makeMessage(lastMessage, lastMessage['user_id']);
     
     chatMessages.appendChild(tempMessage);
-    console.log(tempMessage)
+    // console.log(tempMessage)
+
+    chatMessages.scrollTo({
+        top: chatMessages.scrollHeight,
+        behavior: 'smooth'
+    });
+    
 }
 
 // Funzione per caricare i messaggi nella chat
 async function loadMessages(mainChat, messages, userId) {
     const chatMessages = mainChat.querySelector('.main-chat');
+
     for (const message of messages) {
         const tempMessage = await makeMessage(message, userId);
         chatMessages.appendChild(tempMessage);
-        
     }
+
+    // Scrolla in fondo SOLO alla fine
+    chatMessages.scrollTo({
+        top: chatMessages.scrollHeight,
+        behavior: 'auto' // oppure 'smooth' se preferisci animazione
+    });
 }
