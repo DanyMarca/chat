@@ -3,10 +3,12 @@ namespace BE\Controllers;
 
 require_once BASE_PATH . 'BE\logs\Log.php';
 require_once BASE_PATH . 'BE\Models\Chat.php';
+require_once BASE_PATH . 'BE\Models\Message.php';
 
 use BE\database\Database;
 use BE\logs\Log;
 use BE\Models\Chat;
+use BE\Models\Message;
 
 class MessageController{
 
@@ -27,11 +29,11 @@ class MessageController{
                 'data' => 'message empty'
             ]);
         }
-        Log::info(
-            'user_id: ' . $logged['data']['user_id'] . "\n" .
-            'chat_id: '. $data['chat_id'] . "\n" .
-            'content: '. $data['message']
-        );
+        // Log::info(
+        //     'user_id: ' . $logged['data']['user_id'] . "\n" .
+        //     'chat_id: '. $data['chat_id'] . "\n" .
+        //     'content: '. $data['message']
+        // );
         try {
             // Connessione al database
             $db = Database::getConnection();
@@ -58,5 +60,9 @@ class MessageController{
                 'data' => 'Database error'
             ]);
         }
+    }
+
+    public static function lastmessage($chat_id){
+        echo Message::Last($chat_id);
     }
 }

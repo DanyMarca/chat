@@ -79,6 +79,11 @@ class Router {
             $data = json_decode(file_get_contents('php://input'), true);
             echo MessageController::create($data);
         }
+
+        elseif (preg_match('#^api/message/last/(\d+)$#', $requestURI, $match)) {
+            $userID = $match[1];
+            echo MessageController::lastmessage($userID); //chat per l'utente
+        }
         
         // AUTH------------------------------------
         

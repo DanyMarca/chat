@@ -18,4 +18,6 @@ class ChatController{
             'data'=>$chat
         ]);
     }
+
+    
 }

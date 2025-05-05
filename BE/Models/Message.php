@@ -61,6 +61,23 @@ class Message{
             $this->id = $db->lastInsertId(); // assegna l'ID generato
         }
     }
+
+    public static function Last($id){
+        $db = Database::getConnection();
+        $sql = "SELECT *
+                FROM Messages AS m
+                WHERE chat_id = :id
+                ORDER BY created_at DESC
+                LIMIT 10";
+    
+        $stmt = $db->prepare($sql);
+        $stmt->execute([
+            'id' => $id
+        ]);
+    
+        return json_encode($stmt->fetch(\PDO::FETCH_ASSOC)); // oppure FETCH_OBJ se preferisci
+    }
+    
 }
 
 ?>
