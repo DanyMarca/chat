@@ -30,3 +30,9 @@ body{
     display: flex;
     flex: 1;
 }
+@media (max-width: 768px) {
+    div#sidebar {
+        resize: none;
+        background-color: red;
+    }
+}
