@@ -14,6 +14,8 @@ async function openChat(chatID) {
     main.appendChild(mainChat);
 }
 
+
+
 // Funzione per caricare dati da API e template HTML
 async function loadChatData(chatID) {
     return Promise.all([
@@ -46,11 +48,24 @@ function fillHeader(mainChat, chatData) {
     
 }
 
+async function loadLastMeesage(chat_id) {
+    const response = await fetch(`${API_BASE_URL}/message/last/${chat_id}`);
+    const lastMessage = await response.json();
+
+    console.log(lastMessage);
+    const chatMessages = document.querySelector('.main-chat');
+    const tempMessage = await makeMessage(lastMessage, lastMessage['user_id']);
+    
+    chatMessages.appendChild(tempMessage);
+    console.log(tempMessage)
+}
+
 // Funzione per caricare i messaggi nella chat
 async function loadMessages(mainChat, messages, userId) {
     const chatMessages = mainChat.querySelector('.main-chat');
     for (const message of messages) {
         const tempMessage = await makeMessage(message, userId);
         chatMessages.appendChild(tempMessage);
+        
     }
 }

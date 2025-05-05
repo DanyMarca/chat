@@ -70,7 +70,7 @@ class Chat{
             FROM Chats AS c
             INNER JOIN Messages AS m ON c.id = m.chat_id
             WHERE c.id = :chat_id
-            ORDER BY m.created_at DESC
+            ORDER BY m.created_at ASC
         ";
         $stmt = $db->prepare($sql);
         $stmt->execute([

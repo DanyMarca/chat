@@ -72,7 +72,8 @@
     padding-bottom: 2vh;
 
     display: flex;
-    flex-direction: column-reverse;
+    /* flex-direction: column-reverse; */
+    flex-direction: column;
 
     
 }

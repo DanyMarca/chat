@@ -24,5 +24,6 @@ async function sendMessage(){
         });
     }
     message.value = "";
-    openChat(chat_id);
+    loadLastMeesage(chat_id);
+    // openChat(chat_id);
 }
