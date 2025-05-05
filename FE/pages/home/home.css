@@ -10,6 +10,8 @@ div#sidebar{
     max-width: 600px;
     overflow: auto;
     resize: horizontal;
+
+    scrollbar-width: none;
 }
 
 div#sidebar-content-search{
@@ -36,6 +38,8 @@ div#sidebar-content-chats{
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    
 }
 
 #main {
@@ -109,4 +113,20 @@ div#sidebar-content-chats{
 #user-settings-list li a:hover {
     background-color: var(--sidebar-search-bg);
     color: var(--sidebar-settings-list-bg);
+}
+
+#sidebar-chats-end-wrapper{
+    width: 100%;
+
+
+    border-top: 1px solid var(--secondary-texts-color);
+
+    display: flex;
+    justify-content: center;
+
+    
+}
+#sidebar-chats-end-text{
+    padding: 12px;
+    color: var(--secondary-texts-color);
 }
