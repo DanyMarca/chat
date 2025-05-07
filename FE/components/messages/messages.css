@@ -1,7 +1,9 @@
 .message{
     max-width: 50%;
     min-width: 5%;
-    word-wrap:normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;  /* Fallback per compatibilità */
+    word-break: normal; 
     padding: 12px;
     border-radius: 16px;
 
@@ -19,8 +21,6 @@
         transform: translateY(0);
     }
 }
-
-
 
 .message.coming{
     background-color: var(--messages-coming-bg-colo);
