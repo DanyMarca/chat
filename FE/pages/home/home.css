@@ -130,3 +130,14 @@ div#sidebar-content-chats{
     padding: 12px;
     color: var(--secondary-texts-color);
 }
+
+#sidebar-chats-create-chat{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+
+    position: fixed;
+    justify-self: right;
+
+    background-color: red;
+}

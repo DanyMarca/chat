@@ -1,3 +1,11 @@
+div#main{
+    background-image: url('../../assets/no-chat.svg');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
 .main-wrapper{
     flex: 1;
     display: flex;
