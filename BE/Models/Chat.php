@@ -6,11 +6,13 @@ use BE\database\Database;
 class Chat{
     private ?int $id;
     private string $name;
+    private string $chat_code;
 
-    public function __construct(?int $id, string $name)
+    public function __construct(?int $id, string $name, string $chat_code)
     {
         $this->id = $id;
         $this->name = $name;
+        $this->chat_code = $chat_code;
     }
 
     public function getId(): ?int {
@@ -32,10 +34,11 @@ class Chat{
                 ':id' => $this->id,
             ]);
         }else{
-            $sql = "INSERT INTO Chats (name) VALUES (:name)";
+            $sql = "INSERT INTO Chats (name, chat_code) VALUES (:name, :chat_code)";
             $stmt = $db->prepare($sql);
             $stmt->execute([
                 ':name' => $this->name,
+                ':chat_code' => $this->chat_code,
             ]);
             $this->id = $db->lastInsertId();
         }

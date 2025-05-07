@@ -1,6 +1,3 @@
-
-
-
 async function loadHome() {
     try {
         const res = await fetch('./pages/home/home.html');
@@ -41,4 +38,7 @@ function Logout_listener() {
     });
 }
 
+function create_chat(){
+    openModal();
+}
 

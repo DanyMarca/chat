@@ -25,6 +25,7 @@ class Migration {
             CREATE TABLE IF NOT EXISTS Chats (
                 id BIGINT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(100) NOT NULL,
+                chat_code varchar(16) UNIQUE,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         ";

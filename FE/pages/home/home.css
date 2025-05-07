@@ -76,17 +76,20 @@ div#sidebar-content-chats{
 }
 
 #user-settings-list {
-    background-color: var(--sidebar-settings-list-bg);
-    border: 1px solid var(--messages-text-color); /* fixato */
-    border-radius: 12px;
-    position: absolute;
     top: 10vh;
     padding: 12px;
     opacity: 0;
+    border-radius: 12px;
+    z-index: 1000;
+
+    background-color: var(--sidebar-settings-list-bg);
+    border: 1px solid var(--messages-text-color);
+
+    position: absolute;
     visibility: hidden;
     transform: translateY(-5px);
+
     transition: all 0.2s ease;
-    z-index: 1000;
 }
 
 #sidebar-user-settings:focus-within #user-settings-list {
@@ -139,5 +142,4 @@ div#sidebar-content-chats{
     position: fixed;
     justify-self: right;
 
-    background-color: red;
 }
