@@ -4,8 +4,8 @@
     flex-direction: column;
     justify-content:space-between;
     max-height: 100%;
-
-    padding-top: 10vh;
+    max-width: 100%;
+    /* padding-top: 10vh; */
     /* padding-bottom: vh; */
 
     background-image: url('../../assets/bg.jpg');
@@ -22,15 +22,48 @@
     background-color: var(--messages-text-color);
     height: 10vh;
     width: 100%;
-    display: flex;
-    align-items: center;
+    
     padding: 12px;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 
-    position: fixed;
+    /* position: fixed; */
+    z-index: 1000;
     top: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
+.main-header-profile{
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
+}
+
+.main-header-exit-bt{
+    aspect-ratio: 1/1;
+    border-radius: 50px;
+    height: 80%;
+
+    background-color: var(--chat-background);
+    border: solid 1px var(--keyboard-border-color);
+
+    background-image: url(../../assets/close.png);
+    
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    transition: all 0.2s ease-in-out;
+}
+
+.main-header-exit-bt:hover{
+
+    height: 90%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.299);
+}
 .main-header-profile-image {
     height: 100%;
     aspect-ratio: 1 / 1;

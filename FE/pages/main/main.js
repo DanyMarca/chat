@@ -1,3 +1,7 @@
+// document.addEventListener("click",function(){
+//     closeChat();
+// })
+
 async function openChat(chatID) {
     const main = document.getElementById('main');
     main.setAttribute('chat_id', chatID);
@@ -82,4 +86,10 @@ async function loadMessages(mainChat, messages, userId) {
         top: chatMessages.scrollHeight,
         behavior: 'auto' // oppure 'smooth' se preferisci animazione
     });
+}
+
+
+async function closeChat() {
+    const main = document.getElementById('main');
+    main.innerHTML="";
 }
