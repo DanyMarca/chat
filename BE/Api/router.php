@@ -97,9 +97,13 @@ class Router {
         } elseif ($requestURI === 'api/sessioncheck') {
             $data = Sessioncontroller::sessionCheck();
             echo json_encode($data);
-        }
-        
 
+        }elseif ($requestURI === 'api/register' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            echo AuthController::register($data);
+
+        }
         elseif ($requestURI === 'api/logout') {
             echo AuthController::logOut();
         }

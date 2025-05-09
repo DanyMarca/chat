@@ -9,7 +9,7 @@ async function openChat(chatID) {
 
     const [response, mainTemplate, keyboardTemplate] = await loadChatData(chatID);
 
-    const mainChat = buildMainChat(mainTemplate);
+    const mainChat = await buildMainChat(mainTemplate);
 
     insertKeyboard(mainChat, keyboardTemplate);
     fillHeader(mainChat, response.data.chat);
@@ -32,14 +32,14 @@ async function loadChatData(chatID) {
 }
 
 // Funzione per creare l'elemento principale della chat
-function buildMainChat(templateHTML) {
+async function buildMainChat(templateHTML) {
     const temp = document.createElement('div');
     temp.innerHTML = templateHTML;
     return temp.firstElementChild;
 }
 
 // Funzione per inserire la tastiera
-function insertKeyboard(mainChat, keyboardHTML) {
+async function insertKeyboard(mainChat, keyboardHTML) {
     const tempKeyboard = document.createElement('div');
     tempKeyboard.innerHTML = keyboardHTML;
     const keyboardElement = tempKeyboard.firstElementChild;

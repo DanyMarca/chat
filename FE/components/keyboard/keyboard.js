@@ -10,7 +10,7 @@ async function sendMessage(){
     let chat_id = document.getElementById("main").getAttribute('chat_id');
     
     if(message.value != "") {
-        console.log(message.value);
+        
         const res = await fetch(`${API_BASE_URL}/sendMessage`, {
             method: 'POST',
             credentials: 'include',

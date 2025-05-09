@@ -7,6 +7,8 @@ require_once BASE_PATH . 'BE\logs\Log.php';
 
 use BE\database\Database;
 use BE\logs\Log;
+use BE\Models\User;
+use Exception;
 
 class AuthController{
     
@@ -71,9 +73,6 @@ class AuthController{
         ]);
     }
     
-
-
-
     public static function sessionttl() {
         $timeout_duration = 1800; // 30 minuti
     
@@ -87,4 +86,31 @@ class AuthController{
         return true;
     }
     
+    public static function register($data) {
+        try {
+            $data['id'] = null;
+
+            if (User::existsByUsername($data['username'])) {
+                throw new \Exception("Username già in uso.");
+            }
+            if (User::existsByEmail($data['email'])) {
+                throw new \Exception("Email già in uso.");
+            }
+            
+            $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+            User::create($data);
+
+            echo json_encode([
+                "status" => "success"
+            ]);
+        } catch (\Exception $e) {
+            echo json_encode([
+                "status" => "failed",
+                "error" => $e->getMessage()
+            ]);
+        }
+    }
+
+
+
 }
