@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    min-height: 100vh;
+    min-height: 100dvh;
     background-color: var(--sidebar-background);
     color: var(--messages-text-color);
     padding: 20px;

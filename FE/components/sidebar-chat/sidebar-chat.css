@@ -14,7 +14,7 @@
 
 .chat:hover {
     background-color: var(--sidebar-hilight-50);
-    height: 10vh;
+    height: 10dvh;
 }
 
 .chat:focus {

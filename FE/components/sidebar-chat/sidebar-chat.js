@@ -42,13 +42,28 @@ function renderChatsFromTemplate(chats, template) {
                 if (obj.isLogged) {
                     const chatID = chatElement.getAttribute('chat-id');
                     openChat(chatID);
+                    if (window.innerWidth <= 768) {
+                        responsiveChat();
+                    }
                 } else {
                     loadLogin();
                 }
+
+                
             });
         });
         
 
         container.appendChild(chatElement);
     });
+}
+
+function responsiveChat(){
+    document.getElementById('sidebar').classList.remove('active');
+    document.getElementById('main').classList.add('active');
+}
+
+function backToSidebar() {
+    document.getElementById('main').classList.remove('active');
+    document.getElementById('sidebar').classList.add('active');
 }

@@ -42,6 +42,7 @@ class Chat{
             ]);
             $this->id = $db->lastInsertId();
         }
+        
     }
 
     public static function show($chat_id)

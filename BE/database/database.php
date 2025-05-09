@@ -12,7 +12,7 @@ class Database {
     private static $charset = 'utf8mb4';
     private static $dns;
 
-
+    
     public static function getConnection(){
         if (self::$pdo === null) {
             $dsn = "mysql:host=" . self::$host . ";dbname=" . self::$db . ";charset=" . self::$charset;
