@@ -59,19 +59,36 @@ function isLoggedIn() {
         };
     });
 }
+async function register() {
+    const usernameField = document.getElementById('username');
+    const emailField = document.getElementById('email');
+    const passwordField = document.getElementById('password');
+    const confirmField = document.getElementById('confirm-password');
 
-function register() {
-    // console.log("click");
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const confirm_password = document.getElementById('confirm-password').value;
+    const username = usernameField.value.trim();
+    const email = emailField.value.trim();
+    const password = passwordField.value;
+    const confirmPassword = confirmField.value;
 
-    // console.log('password: ', password == confirm_password);
-    if(!(password == confirm_password)){
-        alert('❌ password non combaciano');
-        password.cla
-        return;
+    const errors = [];
+
+    const usernameError = await validateUsername(username, usernameField);
+    if (usernameError) errors.push(usernameError);
+
+    const emailError = await validateEmail(email, emailField);
+    if (emailError) errors.push(emailError);
+
+    const passwordError = await validatePassword(password, passwordField);
+    if (passwordError) errors.push(passwordError);
+
+    const confirmError = await validateConfirmPassword(password, confirmPassword, passwordField, confirmField);
+    if (confirmError) errors.push(confirmError);
+
+    if (errors.length > 0) {
+        alert(errors.join('\n'));
+    } else {
+        alert("✅ Registrazione valida! Procedi pure.");
     }
-    // console.log(confirm_password);
 }
+
+
