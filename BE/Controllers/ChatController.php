@@ -8,6 +8,7 @@ require_once BASE_PATH . 'BE\Controllers\User_ChatController.php';
 use BE\logs\Log;
 use BE\Models\Chat;
 use BE\Controllers\User_ChatController;
+use Exception;
 
 class ChatController{
 
@@ -22,8 +23,13 @@ class ChatController{
     }
 
     public static function create($data){
+        try{
+
+        
         $name = $data['name'] ?? null;
-        $chat_code = $data['chat_code'] ?? null;
+        $chat_code = Chat::generateUniqueCode(NULL);;
+        Log::info($name. $chat_code);
+
         if($name === null && $chat_code === null){
             return json_encode([
                 'status' => 'error',
@@ -40,6 +46,9 @@ class ChatController{
             'status'=>'succsess',
             'data'=>$ueser_chat
         ]);
+        }catch(Exception $e){
+            Log::error($e);
+        }
     }
 
     

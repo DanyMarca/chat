@@ -2,6 +2,7 @@
 namespace BE\Models;
 
 use BE\database\Database;
+use BE\logs\Log;
 
 class Chat{
     private ?int $id;
@@ -84,6 +85,22 @@ class Chat{
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+
+    public static function generateUniqueCode(?\PDO $pdo): string {
+        if($pdo === null){
+            $pdo = Database::getConnection();
+        }
+        do {
+            $code = bin2hex(random_bytes(8)); // 16 caratteri esadecimali
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM chats WHERE chat_code = :code");
+            $stmt->execute(['code' => $code]);
+            $exists = $stmt->fetchColumn() > 0;
+            
+            Log::info($code);
+        } while ($exists);
+    
+        return $code;
+    }
 }
 
 ?>

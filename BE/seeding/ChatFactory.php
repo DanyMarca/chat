@@ -12,7 +12,7 @@ class ChatFactory{
         $pdo = Database::getConnection();
         $id = null;
         $name = "Chat_".rand(1000, 9999);
-        $chat_code = self::generateUniqueCode($pdo);
+        $chat_code = Chat::generateUniqueCode($pdo);
         return new Chat($id, $name, $chat_code);
     }
 
@@ -20,18 +20,6 @@ class ChatFactory{
         $chat = self::makefake();
         $chat->save();
         return $chat;
-    }
-
-    private static function generateUniqueCode(\PDO $pdo): string {
-        do {
-            $code = bin2hex(random_bytes(8)); // 16 caratteri esadecimali
-            $stmt = $pdo->prepare("SELECT COUNT(*) FROM chats WHERE chat_code = :code");
-            $stmt->execute(['code' => $code]);
-            $exists = $stmt->fetchColumn() > 0;
-            
-        } while ($exists);
-    
-        return $code;
     }
 }
 

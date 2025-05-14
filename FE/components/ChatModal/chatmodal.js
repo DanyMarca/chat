@@ -17,7 +17,7 @@ async function clickOutOfModal() {
     document.querySelector('.modal-wrapper').addEventListener("click", function (event) {
         const modalContent = document.getElementById("chat-modal-card");
         if (!modalContent.contains(event.target)) {
-            console.log("out of modal");
+
             closeModal();
         }
     });
@@ -28,7 +28,7 @@ function loadModal(){
     let modal = document.querySelector('.modal-wrapper')
 
     if (modal == null) {
-        console.log("no modal");
+
         let positionhtml = document.getElementById('sidebar-content');
 
         fetch('./components/chatmodal/chatmodal.html')
@@ -48,3 +48,33 @@ function loadModal(){
 }
 
 
+async function createChat(){ //http://localhost/chat/BE/Api/chat/create
+    let chat = await document.getElementById("create-chat-input");
+
+    if(chat.value < 4){
+        let debug = await document.getElementById("output-create-chat");
+        debug.innerText = "4 letters needed"
+        return null;
+    }
+    else{
+    let debug = await document.getElementById("output-create-chat");
+    debug.innerText = "creazione in corso..."
+    console.log(chat.value);
+    }
+
+    fetch(`${API_BASE_URL}/chat/create`,{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: "include",
+        body: JSON.stringify({
+            name: chat.value,
+        })})
+
+
+}
+
+function joinChat(){
+
+}
