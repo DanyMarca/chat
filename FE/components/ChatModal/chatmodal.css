@@ -1,8 +1,7 @@
-
-
 .modal-wrapper{
     height: 100dvh;
     width: 100vw;
+    top: 0px;
 
     position: absolute;
     justify-self: center;
@@ -11,18 +10,37 @@
     justify-content: center;
     align-items: center;
 
+    overflow: hidden;
 }
 
-div#create-chat-modal-card{
-    height: 30%;
-    width: 30%;
+.modal-card{
+    padding: 0px 12px;
+
     border-radius: 12px;
-    
     background-color: var(--sidebar-settings-list-bg);
-
-    animation: fadeInUp 0.3s ease-out forwards;
-    
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.232);
 }
+
+div#chat-modal-card{
+    height: 50%;
+    width: 40%;
+    padding: 12px;
+
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.modal-card-section{
+    padding: 12px;
+    gap: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 @keyframes fadeInUp {
     from {
@@ -45,4 +63,17 @@ div#create-chat-modal-card{
         opacity: 0;
         transform: translateY(0);
     }
+}
+
+.div-bt{
+    padding: 8px 4px;
+
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 12px;
+}
+
+.div-bt:hover{
+    color: var(--sidebar-settings-list-bg);
+    background-color: black;
 }

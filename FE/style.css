@@ -39,9 +39,11 @@ body{
         
     }
 
+}
 
-    /* #sidebar.active,
-    #main.active {
-        display: block;
-    } */
+.CTA{
+    padding: 10px 20px;
+    border-radius: 12px;
+
+    aspect-ratio: 1/1;
 }

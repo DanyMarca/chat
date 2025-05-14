@@ -15,7 +15,7 @@ async function loadHome() {
 }
 
 function Logout_listener() {
-    
+    loseFocus();
     const logout = document.getElementById("logout-link");
     if (!logout) return; // evita errori se non trovato
 
@@ -39,6 +39,14 @@ function Logout_listener() {
 }
 
 function create_chat(){
-    openModal();
+    loseFocus();
+    loadModal();
 }
 
+async function loseFocus(){
+    let el = document.getElementById('sidebar-user-settings');
+    
+    setTimeout(() => {
+        el.blur();
+    }, 20);
+}

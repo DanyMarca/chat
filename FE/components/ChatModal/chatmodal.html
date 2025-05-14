@@ -1,5 +1,21 @@
 <div id="create-chat-modal" class="modal-wrapper" onclick="clickOutOfModal()">
-    <div id="create-chat-modal-card">
-        
+    <div id="chat-modal-card" class="modal-card">
+        <div id="create-chat" class="modal-card modal-card-section">
+            <h4>create a chat and invite friends!</h4>
+
+            <label for="create-chat-input"></label>
+            <input type="text" name="create-chat-input" placeholder="Chat Name...">
+            
+            <div id="create-chat-bt" class="div-bt" tabindex="0" onclick="createChat()">Create!</div>
+        </div>
+
+        <div id="join-chat" class="modal-card modal-card-section">
+            <h4>ask your friends for a chat-code!</h4>
+            
+            <label for="join-chat-code"></label>
+            <input type="text" name="join-chat-input" placeholder="Chat Code...">
+
+            <div id="join-chat-bt" class="div-bt" tabindex="0" onclick="joinChat()">Join!</div>
+        </div>
     </div>
 </div>

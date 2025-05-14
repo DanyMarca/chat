@@ -72,6 +72,14 @@ class Router {
         elseif (preg_match('#^api/chat/(\d+)$#', $requestURI, $match)) {
             $userID = $match[1];
             echo ChatController::show($userID); //chat per l'utente
+
+        }elseif ($requestURI === 'api/chat/create') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            echo ChatController::create($data);
+
+        }elseif ($requestURI === 'api/sendmessage') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            echo MessageController::create($data);
         }
 
         // MESSAGE------------------------------------

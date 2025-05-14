@@ -49,10 +49,7 @@
 }
 
 .keyboard-content button {
-    padding: 10px 20px;
-    border-radius: 12px;
-
-    aspect-ratio: 1/1;
+    
     background-image: url("../../assets/right-arrow.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -60,7 +57,7 @@
     background-size: 80%;
 
     
-    background-color: var(--sidebar-background);
+    /* background-color: var(--sidebar-background); */
 }
 
 .keyboard-content button:hover {
