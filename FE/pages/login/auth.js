@@ -87,8 +87,35 @@ async function register() {
     if (errors.length > 0) {
         alert(errors.join('\n'));
     } else {
-        alert("✅ Registrazione valida! Procedi pure.");
+        fetchregister(username, email, password);
+
+        
     }
 }
 
 
+function fetchregister(username, email, password){
+    
+    return fetch(`${API_BASE_URL}/register`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: "include",
+        body: JSON.stringify({
+            username: username,
+            email: email,
+            password: password
+        })
+    })
+    .then(res => res.json())
+    .then(responce => {
+        console.log(responce);
+        if (responce.status === "success") {
+            alert("account creato con successo")
+            loadIndex();
+        } else {
+            alert('❌ '+ responce.error);
+        }
+    })
+}

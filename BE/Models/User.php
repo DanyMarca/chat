@@ -1,6 +1,7 @@
 <?php
 namespace BE\Models;
 
+use BE\logs\Log;
 use BE\database\Database;
 
 class User{
@@ -49,7 +50,9 @@ class User{
                 ':password' => $this->password,
                 ':id' => $this->id
             ]);
-        } else { // insert
+        } 
+        
+        else { // insert
             $sql = "INSERT INTO Users (username, email, password) VALUES (:username, :email, :password)";
             $stmt = $db->prepare($sql);
             $stmt->execute([
@@ -105,6 +108,20 @@ class User{
         $stmt = $db->prepare($sql);
         $stmt->execute(['user_id' => $userId]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? null;
+    }
+    
+    public static function existsByEmail(string $email): bool {
+        $db = Database::getConnection();
+        $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetchColumn() > 0;
+    }
+
+    public static function existsByUsername(string $username): bool {
+        $db = Database::getConnection();
+        $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
+        $stmt->execute([$username]);
+        return $stmt->fetchColumn() > 0;
     }
 }
 ?>
