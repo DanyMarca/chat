@@ -47,5 +47,23 @@ class User_Chat{
         }
     }
 
+    public static function userlist($chat_id){
+        $db = Database::getConnection();
+
+        $sql = "
+            SELECT COUNT(*) as user_count
+            FROM users_chats
+            where chat_id = :chat_id AND user_id = :user_id
+        ";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([
+            'chat_id' => $chat_id,
+            'user_id' => $_SESSION['user_id']
+            
+        ]);
+        $responce = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $responce['user_count'] > 0;
+        }
+
 }
 ?>

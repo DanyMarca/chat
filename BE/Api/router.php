@@ -15,6 +15,7 @@ use BE\Controllers\ChatController;
 use BE\Controllers\AuthController;
 use BE\Controllers\MessageController;
 use BE\Controllers\Sessioncontroller;
+use BE\Controllers\User_ChatController;
 use BE\logs\Log;
 
 class Router {
@@ -80,6 +81,12 @@ class Router {
         }elseif ($requestURI === 'api/sendmessage') {
             $data = json_decode(file_get_contents('php://input'), true);
             echo MessageController::create($data);
+        }
+
+        // USER_CHAT------------------------------------
+        elseif ($requestURI === 'api/chat/join') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            echo User_ChatController::join($data);
         }
 
         // MESSAGE------------------------------------

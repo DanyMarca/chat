@@ -10,7 +10,10 @@ async function closeModal(){
     modal.style.animation = 'fadeOutDown 0.3s ease-out forwards'
     setTimeout(() => {
         modal.style.display = "none";
-    }, 200);
+        // modal.remove();
+    }, 200)
+    
+    
 }
 
 async function clickOutOfModal() {
@@ -44,42 +47,75 @@ function loadModal(){
     }else{
         openModal();
     }
-
 }
 
 
-async function createChat(){ //http://localhost/chat/BE/Api/chat/create
-    let chat = await document.getElementById("create-chat-input");
 
-    if(chat.value < 4){
-        let debug = await document.getElementById("output-create-chat");
+
+async function createChat(){ //http://localhost/chat/BE/Api/chat/create
+    let chat_name = await document.getElementById("create-chat-input");
+    let debug = await document.getElementById("output-create-chat");
+
+    if(chat_name.value.length < 4){
         debug.innerText = "4 letters needed"
         return null;
-    }
-    else{
-        let debug = await document.getElementById("output-create-chat");
+
+    }else{
         debug.innerText = "creazione in corso..."
+
     }
 
-    let res = fetch(`${API_BASE_URL}/chat/create`,{
+    fetch(`${API_BASE_URL}/chat/create`,{
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
         credentials: "include",
         body: JSON.stringify({
-            name: chat.value,
+            name: chat_name.value,
         })
     })
     .then(res => {
         if(res.ok){
-            console.log('res ' + res);
+            
             closeModal();
             loadChats();
         }
     });
 }
 
-function joinChat(){
+async function joinChat(){
+    let chat_code = await document.getElementById("join-chat-input");
+    let debug = await document.getElementById("output-join-chat");
 
+
+    if(chat_code.value.length != 16){
+        debug.innerText = "16 characters needed"
+        return null;
+
+    }else{
+        debug.innerText = "join in corso..."
+
+        fetch(`${API_BASE_URL}/chat/join`,{
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                chat_code: chat_code.value,
+            })
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(((res)));
+            if(res.ok){
+                closeModal();
+                loadChats();
+            }else{
+                chat_name = (res.chat_name.length > 10 ? res.chat_name.slice(0,7) + '...' : res.chat_name);
+                debug.innerText = res.message + "\n" +chat_name;
+            }
+        });
+    }
 }

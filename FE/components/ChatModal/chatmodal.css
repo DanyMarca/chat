@@ -1,6 +1,7 @@
 .modal-wrapper{
     height: 100dvh;
-    width: 100vw;
+    width: 100dvw; 
+    
     top: 0px;
     z-index: 1000;
 
@@ -42,6 +43,9 @@ div#chat-modal-card{
     align-items: center;
 }
 
+#output-join-chat, #output-create-chat{
+    text-align: center;
+}
 
 @keyframes fadeInUp {
     from {

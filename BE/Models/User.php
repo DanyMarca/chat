@@ -120,7 +120,6 @@ class User{
             $chat['last_message'] = Message::Last($chat['id']);
         }
 
-        Log::info(json_encode($chats));
         return $chats;
     }
 

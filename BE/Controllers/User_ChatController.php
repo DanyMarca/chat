@@ -47,4 +47,35 @@ class User_ChatController{
 
         return $data['chat_n'] > 0 ? true : false;
     }
+
+    public static function join($data){
+        try{
+            $db = Database::getConnection();
+
+            $sql = "
+                SELECT *
+                FROM chats
+                WHERE chat_code = :chat_code
+            ";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                'chat_code' => $data['chat_code']
+            ]);
+            $responce = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+            if(User_Chat::userlist($responce['id'])){
+                return json_encode([
+                    'status' => 'error',
+                    'message' => 'user alredy in chat ',
+                    'chat_name' => $responce['name']
+                ],400);
+            }else{
+                self::addUsers($responce['id'], $_SESSION['user_id']);
+            }
+
+        }catch(\Exception $e){
+            Log::error($e);
+        }
+    }
+
 }
