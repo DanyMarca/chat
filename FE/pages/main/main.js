@@ -12,7 +12,7 @@ async function openChat(chatID) {
     const mainChat = await buildMainChat(mainTemplate);
 
     insertKeyboard(mainChat, keyboardTemplate);
-    fillHeader(mainChat, response.data.chat);
+    fillHeader(mainChat, response.data);
 
     main.appendChild(mainChat); // 👈 PRIMA questo
 
@@ -49,9 +49,9 @@ async function insertKeyboard(mainChat, keyboardHTML) {
 
 // Funzione per riempire l'intestazione della chat (nome e immagine)
 function fillHeader(mainChat, chatData) {
-    mainChat.querySelector('.main-header-chat-name').textContent = chatData?.name || "Chat senza nome";
-    mainChat.querySelector('.main-header-profile-image').style.backgroundImage = `url(${chatData?.image_url || 'assets/default.jpg'})`;
-    
+    mainChat.querySelector('.main-header-chat-name').textContent = chatData.chat?.name || "Chat senza nome";
+    mainChat.querySelector('.main-header-profile-image').style.backgroundImage = `url(${chatData.chat?.image_url || 'assets/default.jpg'})`;
+    loadUsersForChat(mainChat, chatData)
 }
 
 async function loadLastMeesage(chat_id) {
@@ -88,8 +88,17 @@ async function loadMessages(mainChat, messages, userId) {
     });
 }
 
-
 async function closeChat() {
     const main = document.getElementById('main');
     main.innerHTML="";
+}
+
+async function loadUsersForChat(mainChat, users) {
+    let list = mainChat.querySelector('.users-list-ul');
+    list.innerHTML = "";
+    users.users.forEach(user => {
+        let li = document.createElement('li');
+        li.textContent = user.username; 
+        list.appendChild(li);
+    });
 }

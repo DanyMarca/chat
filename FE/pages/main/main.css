@@ -4,15 +4,20 @@ div#main{
     background-repeat: no-repeat;
     background-position: center;
 
+    
 }
 
 .main-wrapper{
+    min-height: 100dvh;
+    max-height: 100%;
+    max-width: 100%;
+
     flex: 1;
+
     display: flex;
     flex-direction: column;
     justify-content:space-between;
-    max-height: 100%;
-    max-width: 100%;
+    
     /* padding-top: 10vh; */
     /* padding-bottom: vh; */
 
@@ -44,31 +49,58 @@ div#main{
 }
 .main-header-content{
     border-radius: 16px;
-
+    /* height: 100%; */
+    max-height: auto;
+    align-self: flex-start;
     cursor: pointer;
 
+    background-color: var(--messages-text-color);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.232);
 }
 .users-list-wrapper {
     height: 0px;
     width: 100%;
     opacity: 0;
+    border-radius: 16px;
     pointer-events: none;
     
     background-color: var(--messages-text-color);
-    transition: opacity 0.3s ease;
 
+    transition: opacity 0.3s ease ; /* il contenitore si nasconde dopo 0.3s */
+    overflow: hidden;
+}
+
+.main-header-content h1{
+    margin: 16px;
 }
 
 .main-header-content:focus-within .users-list-wrapper {
     height: auto;
-    top: 100%;
-    /* position: fixed; */
+    max-height: 20vh;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+
     opacity: 1;
     pointer-events: auto;
     
+    
 }
+.users-list-ul{
+    max-width: 100%;
+    padding: 0px;
+}
+.users-list-ul li{
+    white-space: nowrap;      /* Non andare a capo */
+    overflow: hidden;         /* Nascondi testo in eccesso */
+    text-overflow: ellipsis;  /* Mostra "…" alla fine */
+    padding: 4px 8px;
 
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+}
 
 .main-header-profile{
     height: 100%;
@@ -90,6 +122,8 @@ div#main{
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
+
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.299);
 
     transition: all 0.2s ease-in-out;
 }
@@ -143,5 +177,13 @@ div#main{
     /* flex-direction: column-reverse; */
     flex-direction: column;
     scrollbar-width: none;
+    
+}
+
+@media (max-width: 768px) {
+    .main-header-content h1{
+        margin: 8px;
+    }
+
     
 }
