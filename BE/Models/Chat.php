@@ -64,6 +64,7 @@ class Chat{
         $chat['user_id'] = $_SESSION['user_id']?? null;
         return [
             'chat' => $chat,
+            'users' => self::renderUsersFromChat($db, $chat_id),
             'messages' => self::renderMessagesFromChat($db, $chat_id)
         ];
     }
@@ -84,7 +85,21 @@ class Chat{
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    private static function renderUsersFromChat($db, $chat_id)
+    {
+        $sql = "
+            SELECT *
+            FROM Users_chats AS uc
+            INNER JOIN users AS u on u.id = uc.user_id 
+            WHERE chat_id = :chat_id
+        ";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([
+            'chat_id' => $chat_id,
+        ]);
 
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
     public static function generateUniqueCode(?\PDO $pdo): string {
         if($pdo === null){

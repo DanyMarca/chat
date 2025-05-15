@@ -42,6 +42,33 @@ div#main{
     align-items: center;
     justify-content: space-between;
 }
+.main-header-content{
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.232);
+}
+.users-list-wrapper {
+    height: 0px;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    
+    background-color: var(--messages-text-color);
+    transition: opacity 0.3s ease;
+
+}
+
+.main-header-content:focus-within .users-list-wrapper {
+    height: auto;
+    top: 100%;
+    /* position: fixed; */
+    opacity: 1;
+    pointer-events: auto;
+    
+}
+
 
 .main-header-profile{
     height: 100%;
