@@ -5,7 +5,11 @@
 
 
 async function loadChats() {
+    
     const loggedIn = await isLoggedIn()
+
+    let sidebar = await document.getElementById('sidebar-content-chats')
+    sidebar.innerHTML = "";
     Promise.all([
         fetch(`${API_BASE_URL}/Users/${loggedIn.user_id}`,).then(res => res.json()),
         fetch('./components/sidebar-chat/sidebar-chat.html').then(res => res.text()),
@@ -30,7 +34,6 @@ function renderChatsFromTemplate(chats, template) {
         temp.innerHTML = template;
         const chatElement = temp.firstElementChild;
 
-        console.log(chat.last_message);
         // Riempie i dati
         chatElement.setAttribute('chat-id', chat.id);
         chatElement.querySelector('.chat-name').textContent = chat.name;

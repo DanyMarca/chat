@@ -73,14 +73,11 @@ async function createChat(){ //http://localhost/chat/BE/Api/chat/create
     })
     .then(res => {
         if(res.ok){
-            console.log(res);
+            console.log('res ' + res);
             closeModal();
             loadChats();
         }
     });
-
-    
-
 }
 
 function joinChat(){

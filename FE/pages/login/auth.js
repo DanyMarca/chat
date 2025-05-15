@@ -110,7 +110,6 @@ function fetchregister(username, email, password){
     })
     .then(res => res.json())
     .then(responce => {
-        console.log(responce);
         if (responce.status === "success") {
             alert("account creato con successo")
             loadIndex();
