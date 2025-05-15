@@ -75,7 +75,7 @@ class Message{
             'id' => $id
         ]);
     
-        return json_encode($stmt->fetch(\PDO::FETCH_ASSOC)); // oppure FETCH_OBJ se preferisci
+        return $stmt->fetch(\PDO::FETCH_ASSOC); // oppure FETCH_OBJ se preferisci
     }
     
 }

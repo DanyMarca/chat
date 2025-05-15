@@ -89,8 +89,8 @@ class Router {
         }
 
         elseif (preg_match('#^api/message/last/(\d+)$#', $requestURI, $match)) {
-            $userID = $match[1];
-            echo MessageController::lastmessage($userID); //chat per l'utente
+            $chat_id = $match[1];
+            echo MessageController::lastmessage($chat_id); //chat per l'utente
         }
         
         // AUTH------------------------------------

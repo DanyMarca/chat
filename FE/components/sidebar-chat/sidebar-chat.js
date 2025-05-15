@@ -30,11 +30,17 @@ function renderChatsFromTemplate(chats, template) {
         temp.innerHTML = template;
         const chatElement = temp.firstElementChild;
 
+        console.log(chat.last_message);
         // Riempie i dati
         chatElement.setAttribute('chat-id', chat.id);
         chatElement.querySelector('.chat-name').textContent = chat.name;
-        chatElement.querySelector('.status-text').textContent = chat.status ?? 'unknown';
-        chatElement.querySelector('.status-color').style.backgroundColor = chat.status === 'online' ? 'green' : 'gray';
+        
+        chatElement.querySelector('.last-message').textContent = chat.last_message 
+        ? chat.last_message.content = chat.last_message.content.length > 27 
+            ? chat.last_message.content.slice(0,27) +'...'
+            : chat.last_message.content
+        : '';
+
         chatElement.querySelector('.chat-image').style.backgroundImage = `url(${chat.image_url || 'assets/default.jpg'})`;
 
         chatElement.addEventListener('click', () => {

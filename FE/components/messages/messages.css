@@ -1,12 +1,13 @@
 .message{
     max-width: 50%;
     min-width: 5%;
+    padding: 12px;
+    border-radius: 16px;
+    
     overflow-wrap: break-word;
     word-wrap: break-word;  /* Fallback per compatibilità */
     word-break: normal;
-    padding: 12px;
-    border-radius: 16px;
-
+    
     opacity: 0;
     animation: fadeInUp 0.3s ease-out forwards;
 }

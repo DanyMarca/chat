@@ -99,16 +99,31 @@ class User{
 
     protected static function getChatsForUser($db, $userId) {
         $sql = "
-            SELECT c.*
+            SELECT c.*, COALESCE(m.last_message_date, c.created_at) AS last_activity
             FROM Chats AS c
             INNER JOIN users_chats AS uc ON c.id = uc.chat_id
+            LEFT JOIN (
+                SELECT chat_id, MAX(created_at) AS last_message_date
+                FROM messages
+                GROUP BY chat_id
+            ) AS m ON m.chat_id = c.id
             WHERE uc.user_id = :user_id
+            ORDER BY last_activity DESC, c.created_at DESC
         ";
-    
+
         $stmt = $db->prepare($sql);
         $stmt->execute(['user_id' => $userId]);
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? null;
+        $chats = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? [];
+
+        // Ora puoi recuperare l'ultimo messaggio per ogni chat se vuoi, ma attenzione alle query multiple
+        foreach ($chats as &$chat) {
+            $chat['last_message'] = Message::Last($chat['id']);
+        }
+
+        Log::info(json_encode($chats));
+        return $chats;
     }
+
     
     public static function existsByEmail(string $email): bool {
         $db = Database::getConnection();

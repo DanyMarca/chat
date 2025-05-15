@@ -96,7 +96,7 @@ class Chat{
             $stmt->execute(['code' => $code]);
             $exists = $stmt->fetchColumn() > 0;
             
-            Log::info($code);
+            
         } while ($exists);
     
         return $code;

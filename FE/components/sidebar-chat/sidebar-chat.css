@@ -41,19 +41,19 @@
 .chat-status {
     display: flex;
     align-items: center;
+
+    /* max-width: 20%; */
+    overflow: hidden;
 }
 
-.status-color {
-    height: 12px;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    background-color: gray;
-    border: 1px solid gray;
-}
-
-.status-text {
-    color: var(--secondary-texts-color);
+.last-message{
+    height: 16px;
     margin: 0px;
+
+    
+    color: var(--secondary-texts-color);
+
+    
 }
 
 .chat-name {

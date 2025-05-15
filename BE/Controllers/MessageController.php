@@ -63,6 +63,6 @@ class MessageController{
     }
 
     public static function lastmessage($chat_id){
-        echo Message::Last($chat_id);
+        echo json_encode(Message::Last($chat_id));
     }
 }

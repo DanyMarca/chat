@@ -57,12 +57,11 @@ async function createChat(){ //http://localhost/chat/BE/Api/chat/create
         return null;
     }
     else{
-    let debug = await document.getElementById("output-create-chat");
-    debug.innerText = "creazione in corso..."
-    console.log(chat.value);
+        let debug = await document.getElementById("output-create-chat");
+        debug.innerText = "creazione in corso..."
     }
 
-    fetch(`${API_BASE_URL}/chat/create`,{
+    let res = fetch(`${API_BASE_URL}/chat/create`,{
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -70,8 +69,17 @@ async function createChat(){ //http://localhost/chat/BE/Api/chat/create
         credentials: "include",
         body: JSON.stringify({
             name: chat.value,
-        })})
+        })
+    })
+    .then(res => {
+        if(res.ok){
+            console.log(res);
+            closeModal();
+            loadChats();
+        }
+    });
 
+    
 
 }
 

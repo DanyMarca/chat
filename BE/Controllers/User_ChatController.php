@@ -19,12 +19,12 @@ class User_ChatController{
         // log::info($user_id);
 
         if(self::chatExist($db, $chat_id)){ //check se la chat esiste
-            
-            Log::info($user_id);
 
             $user_chat = New User_Chat(null, $user_id, $chat_id);
             $user_chat->save();
+
             return $user_chat;
+
         }else{
             return json_encode([
                 'status' => 'error',
