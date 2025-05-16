@@ -47,51 +47,72 @@ div#main{
     align-items: center;
     justify-content: space-between;
 }
-.main-header-content{
-    border-radius: 16px;
-    /* height: 100%; */
-    max-height: auto;
-    align-self: flex-start;
-    cursor: pointer;
 
+.main-header-content {
+    min-width: 10dvw;
+    position: relative; /* per ancorare l’assoluto */
+    display: inline-block; /* si adatta a h1 */
+    border-radius: 16px;
+    cursor: pointer;
     background-color: var(--messages-text-color);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.232);
+
+    transition: all 0.3s ease 0.2s;
 }
 .users-list-wrapper {
-    height: 0px;
-    width: 100%;
+    position: absolute;
+    top: 100%; /* sotto l'h1 */
+    left: 0;
+    width: 100%; /* oppure 100% se vuoi che segua h1 */
+    z-index: 10;
+
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+
     opacity: 0;
-    border-radius: 16px;
     pointer-events: none;
-    
+    border-radius: 16px;
+    scrollbar-width: none;
     background-color: var(--messages-text-color);
 
-    transition: opacity 0.3s ease ; /* il contenitore si nasconde dopo 0.3s */
-    overflow: hidden;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+
+    transform: translateY(-20px);
+    transition: transform 0.3s ease,max-height 0.3s ease, opacity 0.3s ease 0.2s;
 }
 
 .main-header-content h1{
-    margin: 16px;
+    margin: 12px;
 }
 
-.main-header-content:focus-within .users-list-wrapper {
-    height: auto;
-    max-height: 20vh;
+.main-header-content:focus{
+    
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-bottom: 4px;
 
-    overflow-x: hidden;
-    overflow-y: scroll;
-    scrollbar-width: none;
+    transition-delay: 0s;
+}
+.main-header-content:focus-within .users-list-wrapper {
+    max-height: 20vh;
 
     opacity: 1;
     pointer-events: auto;
-    
-    
+    overflow-y: auto;
+
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+
+    transform: translateY(0px);
 }
 .users-list-ul{
     max-width: 100%;
     padding: 0px;
 }
 .users-list-ul li{
+    width: 100%;
     white-space: nowrap;      /* Non andare a capo */
     overflow: hidden;         /* Nascondi testo in eccesso */
     text-overflow: ellipsis;  /* Mostra "…" alla fine */
