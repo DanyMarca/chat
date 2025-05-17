@@ -82,3 +82,18 @@ div#chat-modal-card{
     color: var(--sidebar-settings-list-bg);
     background-color: black;
 }
+
+@media (max-width: 768px) {
+    div#chat-modal-card{
+        width: auto;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .modal-card-section{
+        /* width: 45%; */
+    }
+}

@@ -92,6 +92,7 @@ async function loadMessages(mainChat, messages, userId) {
 async function closeChat() {
     const main = document.getElementById('main');
     main.innerHTML="";
+    main.setAttribute('chat_id',null)
 }
 
 async function loadUsersForChat(mainChat, users) {

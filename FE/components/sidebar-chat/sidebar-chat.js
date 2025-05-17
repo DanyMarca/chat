@@ -50,7 +50,8 @@ function renderChatsFromTemplate(chats, template) {
         
         chatElement.querySelector('.chat-image').style.backgroundImage = `url(${chat.image_url || 'assets/default.jpg'})`;
 
-        chatElement.addEventListener('click', () => {
+        chatElement.addEventListener('click', (e) => {
+            if (e.target.closest('.menu-icon')) return;
             isLoggedIn().then(obj => {
                 if (obj.isLogged) {
                     const chatID = chatElement.getAttribute('chat-id');
@@ -67,11 +68,16 @@ function renderChatsFromTemplate(chats, template) {
                 
             });
         });
-        chatElement.querySelector('.chat-option-list-exit').addEventListener('click', () => { 
-            let chat = chatElement.getAttribute('chat-id');
-            let chat_name = chatElement.textContent;
-            exitFromChat(chat, chat_name);
-        });
+        let option_list = chatElement.querySelector('.chat-option-list-exit');
+        if(option_list){
+            option_list.addEventListener('click', (e) => { 
+                e.stopPropagation();
+                let chat = chatElement.getAttribute('chat-id');
+                let chat_name = chatElement.textContent;
+                exitFromChat(chat, chat_name);
+            });  
+        }
+        
 
         container.appendChild(chatElement);
     });

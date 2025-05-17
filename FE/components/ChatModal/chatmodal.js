@@ -10,7 +10,7 @@ async function closeModal(){
     modal.style.animation = 'fadeOutDown 0.3s ease-out forwards'
     setTimeout(() => {
         modal.style.display = "none";
-        // modal.remove();
+        modal.remove();
     }, 200)
     
     
