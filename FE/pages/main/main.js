@@ -51,7 +51,8 @@ async function insertKeyboard(mainChat, keyboardHTML) {
 function fillHeader(mainChat, chatData) {
     mainChat.querySelector('.main-header-chat-name').textContent = chatData.chat?.name || "Chat senza nome";
     mainChat.querySelector('.main-header-profile-image').style.backgroundImage = `url(${chatData.chat?.image_url || 'assets/default.jpg'})`;
-    loadUsersForChat(mainChat, chatData)
+    loadUsersForChat(mainChat, chatData);
+    loadChatCode(mainChat, chatData);
 }
 
 async function loadLastMeesage(chat_id) {
@@ -101,4 +102,15 @@ async function loadUsersForChat(mainChat, users) {
         li.textContent = user.username; 
         list.appendChild(li);
     });
+}
+
+async function loadChatCode(mainChat, chatData) {
+    let code_wrapper = mainChat.querySelector('.chat-code-text');
+    code_wrapper.setAttribute('chat_code',chatData.chat.chat_code );
+}
+
+async function copyChatCode(){
+    let chat_code = document.querySelector('.chat-code-text').getAttribute('chat_code');
+    navigator.clipboard.writeText(chat_code);
+    
 }

@@ -1,13 +1,8 @@
-// document.addEventListener('DOMContentLoaded', function () {
-//     loadChats()
-// });
-
-
-
 async function loadChats() {
     
     const loggedIn = await isLoggedIn()
 
+    try{
     let sidebar = await document.getElementById('sidebar-content-chats')
     sidebar.innerHTML = "";
     Promise.all([
@@ -22,12 +17,16 @@ async function loadChats() {
         .catch(err => {
             console.error('Errore:', err);
         });
+    }catch{
+        console.log("ci riprovo");
+        loadChats();
+    }
 }
 
 function renderChatsFromTemplate(chats, template) {
     const container = document.getElementById('sidebar-content-chats'); // Div dove aggiungi le chat
     // container.innerHTML = ''; // Pulisce prima
-
+    searchBarListener(chats);
     chats.forEach(chat => {
         
         const temp = document.createElement('div');
@@ -38,12 +37,17 @@ function renderChatsFromTemplate(chats, template) {
         chatElement.setAttribute('chat-id', chat.id);
         chatElement.querySelector('.chat-name').textContent = chat.name;
         
+        try{
         chatElement.querySelector('.last-message').textContent = chat.last_message 
         ? chat.last_message.content = chat.last_message.content.length > 27 
             ? chat.last_message.content.slice(0,27) +'...'
             : chat.last_message.content
         : '';
+        }catch{
+            
+        }
 
+        
         chatElement.querySelector('.chat-image').style.backgroundImage = `url(${chat.image_url || 'assets/default.jpg'})`;
 
         chatElement.addEventListener('click', () => {

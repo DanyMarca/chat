@@ -50,3 +50,22 @@ async function loseFocus(){
         el.blur();
     }, 20);
 }
+
+async function searchBarListener(){
+    
+
+    const search = document.querySelector('.sidebar-search');
+    
+    search.addEventListener('input', () => {
+        let chats = document.querySelectorAll('.chat');
+        console.log(chats);
+
+        const query = search.value.toLowerCase();
+
+        chats.forEach(chat => {
+            const text = chat.querySelector('.chat-name')?.textContent.toLowerCase() || '';
+            chat.style.display = text.includes(query) ? "flex" : "none";
+        });
+        console.log(query)
+    })
+}

@@ -108,7 +108,6 @@ async function joinChat(){
         })
         .then(res => res.json())
         .then(res => {
-            console.log(((res)));
             if(res.ok){
                 closeModal();
                 loadChats();

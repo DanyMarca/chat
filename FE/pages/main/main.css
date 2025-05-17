@@ -1,57 +1,53 @@
-div#main{
+/* ------------------- Layout Principale ------------------- */
+
+div#main {
     background-image: url('../../assets/no-chat.svg');
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
-
-    
 }
 
-.main-wrapper{
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     min-height: 100dvh;
     max-height: 100%;
     max-width: 100%;
 
     flex: 1;
 
-    display: flex;
-    flex-direction: column;
-    justify-content:space-between;
-    
-    /* padding-top: 10vh; */
-    /* padding-bottom: vh; */
-
     background-image: url('../../assets/bg.jpg');
     background-size: cover;
     background-repeat: repeat;
     background-position: center;
-
     background-attachment: scroll;
-
-    
 }
 
+/* ------------------- Header ------------------- */
+
 .main-header {
-    background-color: var(--messages-text-color);
-    height: 10vh;
-    width: 100%;
-    
-    padding: 12px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-
-    /* position: fixed; */
-    z-index: 1000;
-    top: 0px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    height: 10vh;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--messages-text-color);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+
+    z-index: 1000;
+    top: 0px;
 }
 
 .main-header-content {
+    position: relative;
+    display: inline-block;
     min-width: 10dvw;
-    position: relative; /* per ancorare l’assoluto */
-    display: inline-block; /* si adatta a h1 */
+    z-index: 20;
+
     border-radius: 16px;
     cursor: pointer;
     background-color: var(--messages-text-color);
@@ -59,115 +55,163 @@ div#main{
 
     transition: all 0.3s ease 0.2s;
 }
+
+.main-header-content h1 {
+    margin: 12px;
+}
+
+.main-header-content:focus-within {
+    cursor: default;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-bottom: 4px;
+    transition-delay: 0s;
+}
+
+.main-header-content:focus-within .users-list-wrapper {
+    max-height: 20vh;
+    cursor: default;
+    opacity: 1;
+    pointer-events: auto;
+    overflow-y: auto;
+
+    transform: translateY(0px);
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+/* ------------------- User List Dropdown ------------------- */
+
 .users-list-wrapper {
     position: absolute;
-    top: 100%; /* sotto l'h1 */
+    top: 100%;
     left: 0;
-    width: 100%; /* oppure 100% se vuoi che segua h1 */
+    width: 100%;
     z-index: 10;
 
+    padding: 0px 8px;
     height: auto;
     max-height: 0;
     overflow: hidden;
 
     opacity: 0;
     pointer-events: none;
-    border-radius: 16px;
-    scrollbar-width: none;
     background-color: var(--messages-text-color);
 
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-
-    transform: translateY(-20px);
-    transition: transform 0.3s ease,max-height 0.3s ease, opacity 0.3s ease 0.2s;
-}
-
-.main-header-content h1{
-    margin: 12px;
-}
-
-.main-header-content:focus{
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
     
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    margin-bottom: 4px;
 
-    transition-delay: 0s;
+    scrollbar-width: none;
+    transform: translateY(-10px);
+    transition: transform 0.3s ease, max-height 0.3s ease, opacity 0.3s ease 0.2s;
 }
-.main-header-content:focus-within .users-list-wrapper {
-    max-height: 20vh;
 
-    opacity: 1;
-    pointer-events: auto;
-    overflow-y: auto;
-
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-
-    transform: translateY(0px);
-}
-.users-list-ul{
+.users-list-ul {
     max-width: 100%;
     padding: 0px;
 }
-.users-list-ul li{
+
+.users-list-ul li {
     width: 100%;
-    white-space: nowrap;      /* Non andare a capo */
-    overflow: hidden;         /* Nascondi testo in eccesso */
-    text-overflow: ellipsis;  /* Mostra "…" alla fine */
-    padding: 4px 8px;
+    padding: 4px 0px;
 
-    transform: translateY(0);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    transform: translateY(10px);
     transition: opacity 0.2s ease, transform 0.2s ease;
-
 }
 
-.main-header-profile{
-    height: 100%;
-    
+/* ------------------- Chat Code ------------------- */
+
+.chat-code-wrapper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    cursor: pointer;
+
+    border: solid 1px var(--messages-text-color);
+    border-radius: var(--border-radius);
+
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease, border 0.2s ease;
 }
 
-.main-header-exit-bt{
+.chat-code-wrapper:hover {
+    border: solid 1px var(--border-hover-color);
+    box-shadow: var(--shadow-medium);
+}
+
+.chat-code-wrapper h6 {
+    margin: 0px;
+    max-width: 100%;
+
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ------------------- Profilo Header ------------------- */
+
+.main-header-profile {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.main-header-profile-image {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    margin: 12px;
+
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* ------------------- Bottone Esci ------------------- */
+
+.main-header-exit-bt {
     aspect-ratio: 1/1;
-    border-radius: 50px;
     height: 80%;
 
+    border-radius: 50px;
     background-color: var(--chat-background);
     border: solid 1px var(--keyboard-border-color);
 
     background-image: url(../../assets/close.png);
-    
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
 
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.299);
-
     transition: all 0.2s ease-in-out;
 }
 
-.main-header-exit-bt:hover{
-
+.main-header-exit-bt:hover {
     height: 90%;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.299);
 }
-.main-header-profile-image {
-    height: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    /* background-color: red; */
-    margin: 12px;
+
+/* ------------------- Stato Utente ------------------- */
+
+.main-header-chat-status {
+    display: flex;
+    align-items: center;
 }
 
 .status-color {
     height: 12px;
     aspect-ratio: 1/1;
+
     align-items: center;
     border-radius: 50%;
     background-color: gray;
@@ -179,32 +223,25 @@ div#main{
     margin: 0px;
 }
 
-.main-header-chat-status {
-    display: flex;
-    align-items: center;
-}
+/* ------------------- Area Chat ------------------- */
 
 .main-chat {
-    /* background-color: red; */
     flex: 1;
-    
-    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+
     gap: 12px;
+    overflow-y: scroll;
+    scrollbar-width: none;
 
     padding-top: 2vh;
     padding-bottom: 2vh;
-
-    display: flex;
-    /* flex-direction: column-reverse; */
-    flex-direction: column;
-    scrollbar-width: none;
-    
 }
 
+/* ------------------- Responsive ------------------- */
+
 @media (max-width: 768px) {
-    .main-header-content h1{
+    .main-header-content h1 {
         margin: 8px;
     }
-
-    
 }
