@@ -116,6 +116,33 @@ class Chat{
     
         return $code;
     }
+
+    public static function isEmpty($chat_id){
+        try{
+            $db = Database::getConnection();
+
+            $stmt = $db->prepare("SELECT COUNT(*) FROM users_chats WHERE chat_id = :chat_id");
+            $stmt->execute([
+                'chat_id' => $chat_id
+            ]);
+
+            Log::info("stmt: ".json_encode($stmt));
+            $isEmpty = $stmt->fetchColumn() > 0;
+            
+            
+            Log::info("chat ". $isEmpty);
+            $db->commit();
+            return $isEmpty;    
+            
+        }catch(\Exception $e){
+            $db->rollback();
+            Log::error($e);
+            return json_encode([
+                'status' => 'error',
+                'data' => $e
+            ]);
+        }
+    }
 }
 
 ?>

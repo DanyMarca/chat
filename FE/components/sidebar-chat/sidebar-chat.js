@@ -54,7 +54,9 @@ function renderChatsFromTemplate(chats, template) {
             isLoggedIn().then(obj => {
                 if (obj.isLogged) {
                     const chatID = chatElement.getAttribute('chat-id');
-                    openChat(chatID);
+                    if(document.getElementById('main').getAttribute('chat_id') != chatID ){
+                        openChat(chatID);
+                        }
                     if (window.innerWidth <= 768) {
                         responsiveChat();
                     }
@@ -65,7 +67,11 @@ function renderChatsFromTemplate(chats, template) {
                 
             });
         });
-        
+        chatElement.querySelector('.chat-option-list-exit').addEventListener('click', () => { 
+            let chat = chatElement.getAttribute('chat-id');
+            let chat_name = chatElement.textContent;
+            exitFromChat(chat, chat_name);
+        });
 
         container.appendChild(chatElement);
     });
@@ -79,4 +85,25 @@ function responsiveChat(){
 function backToSidebar() {
     document.getElementById('main').classList.remove('active');
     document.getElementById('sidebar').classList.add('active');
+}
+
+async function exitFromChat(chat_id){
+    console.log(chat_id);
+    let res = await fetch(`${API_BASE_URL}/chat/delete`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: "include",
+        body: JSON.stringify({
+            chat_id: chat_id,
+        })
+    });
+    console.log(res);
+    if(res.ok){
+    
+        alert("successfully exited");
+        loadChats();
+        closeChat();
+    }
 }

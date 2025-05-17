@@ -1,6 +1,7 @@
 <?php
 namespace BE\Models;
 
+use BE\logs\Log;
 use BE\database\Database;
 
 class User_Chat{
@@ -65,5 +66,38 @@ class User_Chat{
         return $responce['user_count'] > 0;
         }
 
+    public static function delete($chat_id){
+        try{
+            
+            $db = Database::getConnection();
+            $db->beginTransaction();
+            
+            $user_id = $_SESSION['user_id'];
+            $sql="
+                DELETE 
+                FROM Users_chats
+                WHERE chat_id = :chat_id AND user_id = :user_id
+            ";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                'chat_id' => $chat_id,
+                'user_id' => $user_id
+            ]);
+            $responce = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+            $db->commit();
+            // Chat::isEmpty($chat_id);
+
+            return $responce;
+
+        }catch(\Exception $e){
+            $db->rollback();
+            Log::error($e);
+            return json_encode([
+                'status' => 'error',
+                'data' => $e
+            ]);
+        }
+    }
 }
 ?>

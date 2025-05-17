@@ -89,6 +89,11 @@ class Router {
             echo User_ChatController::join($data);
         }
 
+        elseif ($requestURI === 'api/chat/delete') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            echo User_ChatController::exitUserFromChat($data);
+        }
+
         // MESSAGE------------------------------------
         elseif ($requestURI === 'api/sendmessage') {
             $data = json_decode(file_get_contents('php://input'), true);

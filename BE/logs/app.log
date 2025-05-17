@@ -1,0 +1,6 @@
+[2025-05-17 13:12:59][test]
+[2025-05-17 13:12:59][stmt: {"queryString":"SELECT COUNT(*) FROM users_chats WHERE chat_id = :chat_id"}]
+[2025-05-17 13:13:52][stmt: {"queryString":"SELECT COUNT(*) FROM users_chats WHERE chat_id = :chat_id"}]
+[2025-05-17 13:13:52][chat ]
+[2025-05-17 13:16:08][stmt: {"queryString":"SELECT COUNT(*) FROM users_chats WHERE chat_id = :chat_id"}]
+[2025-05-17 13:16:08][chat 1]

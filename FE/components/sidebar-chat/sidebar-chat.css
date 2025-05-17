@@ -1,14 +1,15 @@
 .chat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
     padding: 12px;
     height: 8vh;
-    gap: 12px;
-    border-radius: 16px;
 
+    border-radius: 16px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    
+    /* overflow: hidden; */
+
     transition: all 0.2s ease-in-out;
 }
 
@@ -21,42 +22,106 @@
     background-color: var(--sidebar-hilight);
 }
 
+/* Contenitore sinistro: immagine + testo */
+.chat-main-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--messages-text-color);
+}
 
+/* Immagine profilo */
 .chat-image {
-    height: 100%;
-    aspect-ratio: 1 / 1;
+    height: 48px;
+    width: 48px;
     border-radius: 50%;
     background-image: url(../../images/image1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-
-    
 }
 
-.chat-content {
-    color: var(--messages-text-color);
+/* Contenuto testuale */
+.chat-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-name {
+    margin: 0;
+    font-size: clamp(1rem, 1.5rem, 2rem);
 }
 
 .chat-status {
     display: flex;
     align-items: center;
-
-    /* max-width: 20%; */
     overflow: hidden;
 }
 
-.last-message{
+.last-message {
+    margin: 0;
     height: 16px;
-    margin: 0px;
-
-    
     color: var(--secondary-texts-color);
-
-    
 }
 
-.chat-name {
-    font-size: clamp(1rem, 1.5rem, 2rem);
-    margin: 0px;
+/* Icona menu (⋮) */
+.menu-icon {
+    position: relative;
+    height: 60%;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.menu-icon:hover{
+    border: 1px solid var(--border-hover-color);
+    border-radius: var(--border-radius-circle);
+}
+
+
+
+.menu-icon span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--secondary-texts-color);
+}
+
+.chat-option-list {
+    min-width: 100px;
+    
+    top: 110%; 
+    right: 0;  
+    
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    z-index: 10;
+    
+    background-color: var(--chat-background);
+
+    position: absolute;
+    cursor: default;
+
+    display: none;    
+    flex-direction: column;
+    justify-content: center;
+    align-content:space-evenly;
+}
+
+.menu-icon:focus-within .chat-option-list {
+    display: flex;
+}
+
+.chat-option-list h3{
+    text-align: center;
+    margin: 4px;
+}
+
+.chat-option-list h3:hover{
+    cursor: pointer;
 }

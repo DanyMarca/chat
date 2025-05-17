@@ -8,6 +8,7 @@
         --shadow-light:  0px 4px 10px rgba(0, 0, 0, 0.1);
         --shadow-medium:  0px 4px 10px rgba(0, 0, 0, 0.2);
         --shadow-bold:  0px 4px 10px rgba(0, 0, 0, 0.3);
+        
     /* FONTS */
         --font-primary: 'Inter', sans-serif;
         --font-secondary: 'DM Sans', sans-serif;
@@ -32,6 +33,8 @@
 
         --border-hover-color:#9CA3AF;
         --border-radius: 12px;
+
+        --border-radius-circle: 24px;
 
     --sidebar-background: #1F2421;
     --sidebar-hilight-50:#2168696e;

@@ -51,6 +51,7 @@ class User_ChatController{
     public static function join($data){
         try{
             $db = Database::getConnection();
+            $db->beginTransaction();
 
             $sql = "
                 SELECT *
@@ -72,10 +73,19 @@ class User_ChatController{
             }else{
                 self::addUsers($responce['id'], $_SESSION['user_id']);
             }
-
+            $db->commit();
         }catch(\Exception $e){
+            $db->rollback();
             Log::error($e);
         }
+    }
+
+    public static function exitUserFromChat($chat_id){
+        $responce = User_Chat::delete($chat_id['chat_id']);
+        return json_encode([
+            'status' => "success",
+            'data' => $responce,
+        ]);
     }
 
 }
