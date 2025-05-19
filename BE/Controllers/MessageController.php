@@ -9,6 +9,9 @@ use BE\database\Database;
 use BE\logs\Log;
 use BE\Models\Chat;
 use BE\Models\Message;
+use ReturnTypeWillChange;
+
+use function PHPSTORM_META\type;
 
 class MessageController{
 
@@ -65,4 +68,10 @@ class MessageController{
     public static function lastmessage($chat_id){
         echo json_encode(Message::Last($chat_id));
     }
+
+    public static function checknew() {
+        $chats = Chat::index();
+        return Message::messageFromChat($chats);
+    }
+
 }

@@ -78,6 +78,56 @@ class Message{
         return $stmt->fetch(\PDO::FETCH_ASSOC); // oppure FETCH_OBJ se preferisci
     }
     
+    public static function messageFromChat($chats){
+        if (isset($chats['error'])) {
+            return json_encode($chats); // restituisci errore
+        }
+
+        $db = Database::getConnection();
+        $result = [];
+
+        $lastActivity = $_SESSION['last_activity'] ?? null;
+
+        foreach ($chats['data'] as $chat) {
+            $sql = "
+                SELECT * FROM messages
+                WHERE chat_id = :chat_id
+                ORDER BY created_at DESC
+                LIMIT 1
+            ";
+
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                "chat_id" => $chat['chat_id']
+            ]);
+
+            $lastMessage = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+            // Se non ci sono messaggi, salta la chat
+            if (!$lastMessage) continue;
+
+            // Se non c'è last_activity salvata, considera tutto nuovo
+            if (!$lastActivity || strtotime($lastMessage['created_at']) > strtotime($lastActivity)) {
+                $result[] = [
+                    'chat' => $chat,
+                    'last_message' => $lastMessage,
+                    'isNew' => [
+                        $lastMessage['created_at'] > strtotime($_SESSION['last_activity']),
+                        strtotime($lastMessage['created_at']),
+                        $_SESSION['last_activity']
+                        ]
+                    ];
+            }
+        }
+
+        return json_encode([
+            'status' => 'success',
+            'data' => $result,
+            'last_activity' => $_SESSION['last_activity']
+        ]);
+    }
+
 }
+
 
 ?>

@@ -104,6 +104,11 @@ class Router {
             $chat_id = $match[1];
             echo MessageController::lastmessage($chat_id); //chat per l'utente
         }
+
+        elseif ($requestURI === 'api/checkformessages') {
+            // $data = json_decode(file_get_contents('php://input'), true);
+            echo MessageController::checknew();
+        }
         
         // AUTH------------------------------------
         

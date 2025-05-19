@@ -58,7 +58,6 @@ async function searchBarListener(){
     
     search.addEventListener('input', () => {
         let chats = document.querySelectorAll('.chat');
-        console.log(chats);
 
         const query = search.value.toLowerCase();
 
@@ -66,6 +65,5 @@ async function searchBarListener(){
             const text = chat.querySelector('.chat-name')?.textContent.toLowerCase() || '';
             chat.style.display = text.includes(query) ? "flex" : "none";
         });
-        console.log(query)
     })
 }

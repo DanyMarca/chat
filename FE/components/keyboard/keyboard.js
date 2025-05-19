@@ -6,6 +6,11 @@ document.addEventListener('keydown', function(e) {
 });
 
 async function sendMessage(){
+    const isLogged = await isLoggedIn();
+    if(!isLogged.isLogged){
+        console.log(isLogged);
+        loadLogin();
+    }
     let message = document.getElementById("keyboard-message");
     let chat_id = document.getElementById("main").getAttribute('chat_id');
     

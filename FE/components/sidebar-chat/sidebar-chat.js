@@ -18,7 +18,6 @@ async function loadChats() {
             console.error('Errore:', err);
         });
     }catch{
-        console.log("ci riprovo");
         loadChats();
     }
 }
@@ -94,7 +93,6 @@ function backToSidebar() {
 }
 
 async function exitFromChat(chat_id){
-    console.log(chat_id);
     let res = await fetch(`${API_BASE_URL}/chat/delete`, {
         method: "POST",
         headers: {
@@ -105,7 +103,6 @@ async function exitFromChat(chat_id){
             chat_id: chat_id,
         })
     });
-    console.log(res);
     if(res.ok){
     
         alert("successfully exited");

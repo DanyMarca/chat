@@ -24,6 +24,36 @@ class Chat{
         return $this->name;
     }
 
+    public static function index() {
+    if (isset($_SESSION['user_id'])) {
+        $db = Database::getConnection();
+
+        $sql = "
+            SELECT *
+            FROM users_chats AS uc
+            WHERE uc.user_id = :user_id
+        ";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute([
+            'user_id' => $_SESSION['user_id']
+        ]);
+        $response = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        return [
+            'status' => 'success',
+            'data' => $response
+        ];
+    } else {
+        return [
+            'status' => "error",
+            'error' => 'user not logged',
+            'data' => $_SESSION['last_activity'] ?? null
+        ];
+    }
+}
+
+
     public function save(){
         $db = Database::getConnection();
 

@@ -17,6 +17,7 @@ async function loadIndex() {
         
         loadHome();
         loadChats();
+        checkForMessages();
         // console.log("carica")
     }
     else{
