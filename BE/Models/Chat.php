@@ -156,11 +156,9 @@ class Chat{
                 'chat_id' => $chat_id
             ]);
 
-            Log::info("stmt: ".json_encode($stmt));
             $isEmpty = $stmt->fetchColumn() > 0;
             
             
-            Log::info("chat ". $isEmpty);
             $db->commit();
             return $isEmpty;    
             

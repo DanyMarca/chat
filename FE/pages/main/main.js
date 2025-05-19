@@ -59,9 +59,9 @@ async function loadLastMeesage(chat_id) {
     const response = await fetch(`${API_BASE_URL}/message/last/${chat_id}`);
     const lastMessage = await response.json();
 
-
+    console.log("last message: ",lastMessage);
     const chatMessages = document.querySelector('.main-chat');
-    const tempMessage = await makeMessage(lastMessage, lastMessage['user_id']);
+    const tempMessage = await makeMessage(lastMessage, lastMessage['loggeduser_id'] ?? lastMessage['user_id']);
     
     chatMessages.appendChild(tempMessage);
 

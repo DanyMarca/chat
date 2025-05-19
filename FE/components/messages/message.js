@@ -11,7 +11,9 @@ async function makeMessage(info, user_id) {
     
     message.querySelector('.message-content').textContent=info.content;
     
-    message.querySelector('.message-owner').textContent=info.user_id
+    message.querySelector('.message-owner').textContent=info.user_id;
+
+    console.log("from: " , info.user_id, "to" , user_id)
 
     if (info.user_id == user_id) {
         message.classList.add('sending');

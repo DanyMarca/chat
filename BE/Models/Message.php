@@ -1,6 +1,7 @@
 <?php
 namespace BE\Models;
 
+use BE\logs\Log;
 use BE\database\Database;
 
 class Message{
@@ -78,54 +79,48 @@ class Message{
         return $stmt->fetch(\PDO::FETCH_ASSOC); // oppure FETCH_OBJ se preferisci
     }
     
-    public static function messageFromChat($chats){
+    public static function messageFromChat(array $chats): string {
+
+
         if (isset($chats['error'])) {
-            return json_encode($chats); // restituisci errore
+            return json_encode($chats); // errore nei dati in ingresso
         }
 
-        $db = Database::getConnection();
-        $result = [];
+        try {
+            $db = Database::getConnection();
+            $newMessages = [];
 
-        $lastActivity = $_SESSION['last_activity'] ?? null;
+            foreach ($chats['data'] as $chat) {
+                $lastMessage = self::Last($chat['chat_id']);
 
-        foreach ($chats['data'] as $chat) {
-            $sql = "
-                SELECT * FROM messages
-                WHERE chat_id = :chat_id
-                ORDER BY created_at DESC
-                LIMIT 1
-            ";
+                if (!$lastMessage) continue;
 
-            $stmt = $db->prepare($sql);
-            $stmt->execute([
-                "chat_id" => $chat['chat_id']
-            ]);
-
-            $lastMessage = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-            // Se non ci sono messaggi, salta la chat
-            if (!$lastMessage) continue;
-
-            // Se non c'è last_activity salvata, considera tutto nuovo
-            if (!$lastActivity || strtotime($lastMessage['created_at']) > strtotime($lastActivity)) {
-                $result[] = [
-                    'chat' => $chat,
-                    'last_message' => $lastMessage,
-                    'isNew' => [
-                        $lastMessage['created_at'] > strtotime($_SESSION['last_activity']),
-                        strtotime($lastMessage['created_at']),
-                        $_SESSION['last_activity']
-                        ]
+                $messageTime = strtotime($lastMessage['created_at']);
+                
+                Log::info("difference: " .$_SESSION['last_activity'] - $messageTime ." user: ". $_SESSION['user_id']);
+                if ($messageTime > $_SESSION['last_activity']) {
+                    $newMessages[] = [
+                        'chat_id' => $chat['chat_id'],
+                        'last_message' => $lastMessage
                     ];
+                }
             }
-        }
 
-        return json_encode([
-            'status' => 'success',
-            'data' => $result,
-            'last_activity' => $_SESSION['last_activity']
-        ]);
+            return json_encode([
+                'status' => 'success',
+                'has_new_messages' => count($newMessages) > 0,
+                'new_messages' => $newMessages,
+                'last_activity' => $_SESSION['last_activity'],
+                'user_id' => $_SESSION['user_id']
+            ]);
+        } catch (\Exception $e) {
+            return json_encode([
+                'status' => 'failed',
+                'error' => $e->getMessage()
+            ]);
+        }
     }
+
 
 }
 

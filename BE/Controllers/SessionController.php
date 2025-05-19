@@ -20,8 +20,6 @@ class SessionController {
             return self::buildResponse(false, 'Sessione scaduta');
         }
 
-        $_SESSION['last_activity'] = time(); // aggiorna attività
-
         return self::buildResponse(true, 'Utente loggato', [
             'user_id' => $_SESSION['user_id'],
             'email' => $_SESSION['email'] ?? null

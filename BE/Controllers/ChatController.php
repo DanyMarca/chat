@@ -15,7 +15,7 @@ class ChatController{
     public static function show($id){
 
         $chat = Chat::show($id);
-        
+        $_SESSION['last_activity'] = time();
         return json_encode([
             'status'=>'succsess',
             'data'=>$chat

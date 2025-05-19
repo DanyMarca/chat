@@ -51,6 +51,7 @@ class MessageController{
             ]);
 
             // Se l'inserimento ha successo, restituisci una risposta positiva
+            
             return json_encode([
                 'status' => 'success',
                 'data' => 'Message sent successfully'
@@ -65,9 +66,12 @@ class MessageController{
         }
     }
 
-    public static function lastmessage($chat_id){
-        echo json_encode(Message::Last($chat_id));
+    public static function lastmessage($chat_id) {
+        $data = Message::Last($chat_id); // array associativo
+        $data['loggeduser_id'] = $_SESSION['user_id'] ?? null; // aggiungo nuova chiave al risultato
+        echo json_encode($data);
     }
+
 
     public static function checknew() {
         $chats = Chat::index();

@@ -76,10 +76,12 @@ class Router {
 
         }elseif ($requestURI === 'api/chat/create') {
             $data = json_decode(file_get_contents('php://input'), true);
+            $_SESSION['last_activity'] = time();
             echo ChatController::create($data);
 
         }elseif ($requestURI === 'api/sendmessage') {
             $data = json_decode(file_get_contents('php://input'), true);
+            $_SESSION['last_activity'] = time();
             echo MessageController::create($data);
         }
 
@@ -102,7 +104,9 @@ class Router {
 
         elseif (preg_match('#^api/message/last/(\d+)$#', $requestURI, $match)) {
             $chat_id = $match[1];
+            $_SESSION['last_activity'] = time();
             echo MessageController::lastmessage($chat_id); //chat per l'utente
+            
         }
 
         elseif ($requestURI === 'api/checkformessages') {
@@ -111,8 +115,12 @@ class Router {
         }
         
         // AUTH------------------------------------
-        
-        elseif ($requestURI === 'api/login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        // auth/updatelast_activity
+        elseif ($requestURI === 'auth/updatelast_activity') {
+            $_SESSION['last_activity'] = time();
+            echo $_SESSION['last_activity'];
+
+        }elseif ($requestURI === 'api/login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = json_decode(file_get_contents('php://input'), true);
             echo AuthController::login($data['email'], $data['password']);
 
