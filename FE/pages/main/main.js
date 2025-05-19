@@ -59,12 +59,11 @@ async function loadLastMeesage(chat_id) {
     const response = await fetch(`${API_BASE_URL}/message/last/${chat_id}`);
     const lastMessage = await response.json();
 
-    // console.log(lastMessage);
+
     const chatMessages = document.querySelector('.main-chat');
     const tempMessage = await makeMessage(lastMessage, lastMessage['user_id']);
     
     chatMessages.appendChild(tempMessage);
-    // console.log(tempMessage)
 
     chatMessages.scrollTo({
         top: chatMessages.scrollHeight,

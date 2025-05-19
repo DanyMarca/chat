@@ -28,7 +28,7 @@ async function loadLogin() {
         const registerLink = document.getElementById("register-link");
         if (registerLink) {
             registerLink.addEventListener('click', function(e){
-                console.log('register');
+                
                 e.stopPropagation();
                 loadRegister();
             },true);

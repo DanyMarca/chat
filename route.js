@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', async function (e) {
 
 async function loadIndex() {
     const isLogged = await isLoggedIn();
-    // console.log('index: ', isLogged.isLogged);
+    
     
     if(isLogged.isLogged){
         
         loadHome();
         loadChats();
         checkForMessages();
-        // console.log("carica")
+        
     }
     else{
         loadLogin();

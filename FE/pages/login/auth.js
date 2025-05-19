@@ -32,7 +32,7 @@ function login(){
         console.error("Errore login:", err);
         alert('Errore di connessione.');
     });
-    // console.log("login");
+   
 }
 
 function logout() {
@@ -40,7 +40,7 @@ function logout() {
 }
 
 function isLoggedIn() {
-    // console.log('API_BASE_URL/sessioncheck');
+    
     return fetch(`${API_BASE_URL}/sessioncheck`, {
         credentials: 'include'
     })
