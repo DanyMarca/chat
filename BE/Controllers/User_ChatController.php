@@ -16,7 +16,6 @@ class User_ChatController{
     public static function addUsers($chat_id, ?int $user_id){
         $db = Database::getConnection();
 
-        // log::info($user_id);
 
         if(self::chatExist($db, $chat_id)){ //check se la chat esiste
 

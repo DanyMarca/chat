@@ -32,11 +32,7 @@ class MessageController{
                 'data' => 'message empty'
             ]);
         }
-        // Log::info(
-        //     'user_id: ' . $logged['data']['user_id'] . "\n" .
-        //     'chat_id: '. $data['chat_id'] . "\n" .
-        //     'content: '. $data['message']
-        // );
+
         try {
             // Connessione al database
             $db = Database::getConnection();

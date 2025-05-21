@@ -65,7 +65,6 @@ class AuthController{
     }
 
     public static function logOut() {
-        // Log::info("unser");
         session_unset();
         return json_encode([
             'status' => 'success',

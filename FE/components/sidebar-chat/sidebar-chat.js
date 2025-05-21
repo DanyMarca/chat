@@ -1,5 +1,4 @@
 async function loadChats() {
-    console.log("loadChat");
     const loggedIn = await isLoggedIn()
 
     try{

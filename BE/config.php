@@ -11,7 +11,6 @@ use BE\logs\Log;
 
 // Impostazioni di sessione
 // $originDomain =  $_SERVER['HTTP_HOST'];
-// Log::info('dominio: '.$originDomain);
 
 // $domain = $_SERVER['HTTP_HOST'];
 // $domain = explode(':', $domain)[0]; // Rimuove eventuale porta
@@ -29,6 +28,4 @@ use BE\logs\Log;
 // ini_set('session.cookie_secure', 1); // se usi HTTPS
 // ini_set('session.use_strict_mode', 1);
 
-
-// Avvia la sessione
-session_start();
+// Nome dispositivo	DESKTOP-58NCJAT

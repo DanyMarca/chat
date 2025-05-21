@@ -29,7 +29,6 @@ class Router {
         
         
         $origin = "http://". $_SERVER['HTTP_HOST'];
-        // Log::info("origin is: ".$origin);
 
         $allowed_origins = [
             'http://localhost',
@@ -38,11 +37,9 @@ class Router {
             'http://'.strtolower(gethostname()),
 
         ];
-        // Log::info(json_encode($allowed_origins));
 
         if(in_array($origin, $allowed_origins)){
         header("Access-Control-Allow-Origin: $origin");
-        // Log::info('passa: '. $origin);
 
         }
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS");

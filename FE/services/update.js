@@ -1,7 +1,6 @@
 async function updateLast_activity() {
     
     let response = fetch(`${API_BASE_URL}/auth/updatelast_activity`)
-    console.log("updateLast_activity: ", response.json());
 }
 
 function sleep(ms) {
@@ -37,7 +36,6 @@ async function checkForMessages() {
             const checkResponse = await fetch(`${API_BASE_URL}/checkformessages`);
             const data = await checkResponse.json();
 
-            console.log("NEW: ", data.has_new_messages, "USER_ID: ", data.user_id);
 
             if (data.has_new_messages) {
                 // Reset delay se arrivano nuovi messaggi
