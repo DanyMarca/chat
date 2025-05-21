@@ -97,7 +97,7 @@ class Message{
 
                 $messageTime = strtotime($lastMessage['created_at']);
                 
-                Log::info("difference: " .$_SESSION['last_activity'] - $messageTime ." user: ". $_SESSION['user_id']);
+                // Log::info("difference: " .$_SESSION['last_activity'] - $messageTime ." user: ". $_SESSION['user_id']);
                 if ($messageTime > $_SESSION['last_activity']) {
                     $newMessages[] = [
                         'chat_id' => $chat['chat_id'],
