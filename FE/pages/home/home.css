@@ -1,20 +1,30 @@
+input::placeholder{
+    color: var(--color-dark-blue);
+    opacity: 50%;
+}
+
 div#sidebar{
-    background-color: var(--sidebar-background);
+    background-color: var(--background-cian);
     width: 30vw;
     height: 100dvh;
     display: flex;
     flex-direction: column;
     
-    min-width: 300px;
-    max-width: 600px;
+    border-right: solid 1px var(--background-light-blue);
+    
+    /* min-width: 300px;
+    max-width: 600px; */
+    /* resize: horizontal; */
     overflow: auto;
-    resize: horizontal;
 
     scrollbar-width: none;
 }
 
 div#sidebar-content-search{
-    height: 10dvh;
+    background-color: var(--background-light-blue);
+    box-shadow: var(--shadow-buttons);
+    
+    height: 100px;
     display: flex;
     justify-content:space-between;
     align-items: center;
@@ -26,8 +36,8 @@ div#sidebar-content-search{
 .sidebar-search{
     height: 4dvh;
     width: 100%;
-    border-radius: 8px;
-    background-color: var(--sidebar-search-bg);
+    border-radius: 12px;
+    background-color: var(--background-cian);
     color: var(--messages-text-color);
 
 }
@@ -47,15 +57,16 @@ div#sidebar-content-chats{
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: var(--sidebar-background);
+    background-color: var(--background-cian);
 }
 
 #sidebar-user-settings{
-    height: 80%;
+    height: 80px;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
 
     background-color: red;
+    box-shadow: var(--shadow-buttons);
 
     transition: all 0.2s ease-in-out;
     
@@ -66,22 +77,24 @@ div#sidebar-content-chats{
 }
 
 #sidebar-user-settings:hover{
-    height: 90%;
+    height: 85px;
     cursor: pointer;
+    box-shadow: 0px 0px 20px  #043042;
 }
 #sidebar-user-settings:focus{
-    height: 90%;
+    height: 90px;
     /* cursor: pointer; */
 }
 
 #user-settings-list {
     top: 10vh;
-    padding: 12px;
+    padding: 20px;
     opacity: 0;
-    border-radius: 12px;
+    border-radius: 32px;
     z-index: 1000;
 
-    background-color: var(--sidebar-settings-list-bg);
+    background-color: var(--background-cian);
+    box-shadow: var(--shadow-buttons);
     border: 1px solid var(--messages-text-color);
 
     position: absolute;
@@ -101,27 +114,35 @@ div#sidebar-content-chats{
     list-style: none;
     margin: 0;
     padding: 0;
+    
 }
 
 #user-settings-list li a {
     display: block;
     padding: 10px;
+    margin: 10px;
+    border-radius: 12px;
+    font-size: 24px;
     text-decoration: none;
-    color: var(--sidebar-search-bg);
-    border-radius: 24px;
+
+    border: 1px solid var(--background-light-blue);
+    background-color: var(--background-light-blue);
+    color: var(--color-dark-blue);
+
+    
     transition: all 0.2s ease-in-out;
 }
 
 #user-settings-list li a:hover {
-    background-color: var(--sidebar-search-bg);
-    color: var(--sidebar-settings-list-bg);
+    background-color: var(--background-cian);
+    color: var(--color-dark-blue);
 }
 
 #sidebar-chats-end-wrapper{
     width: 100%;
 
 
-    border-top: 1px solid var(--secondary-texts-color);
+    border-top: 1px solid  var(--background-light-blue);
 
     display: flex;
     justify-content: center;
@@ -130,7 +151,7 @@ div#sidebar-content-chats{
 }
 #sidebar-chats-end-text{
     padding: 12px;
-    color: var(--secondary-texts-color);
+    color: #2aabab73;
 }
 
 #sidebar-chats-create-chat{

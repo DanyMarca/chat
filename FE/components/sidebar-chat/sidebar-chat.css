@@ -4,9 +4,9 @@
     align-items: center;
     gap: 12px;
     padding: 12px;
-    height: 8vh;
+    height: 80px;
 
-    border-radius: 16px;
+    border-radius: 32px;
     cursor: pointer;
     /* overflow: hidden; */
 
@@ -14,12 +14,12 @@
 }
 
 .chat:hover {
-    background-color: var(--sidebar-hilight-50);
-    height: 10dvh;
+    background-color: var(--background-light-blue);
+    height: 100px;
 }
 
 .chat:focus {
-    background-color: var(--sidebar-hilight);
+    background-color: var(--background-light-blue);
 }
 
 /* Contenitore sinistro: immagine + testo */
@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--messages-text-color);
+    color: var(--color-dark-blue);
 }
 
 /* Immagine profilo */
@@ -35,6 +35,7 @@
     height: 48px;
     width: 48px;
     border-radius: 50%;
+    background-color: var(--background-light-blue);
     background-image: url(../../images/image1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -61,14 +62,14 @@
 .last-message {
     margin: 0;
     height: 16px;
-    color: var(--secondary-texts-color);
+    color: var(--color-dark-blue);
 }
 
 /* Icona menu (⋮) */
 .menu-icon {
     position: relative;
-    height: 60%;
-    aspect-ratio: 1/1;
+    height: 60px;
+    width: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -78,7 +79,7 @@
 }
 
 .menu-icon:hover{
-    border: 1px solid var(--border-hover-color);
+    border: 1px solid var(--color-dark-blue);
     border-radius: var(--border-radius-circle);
 }
 
@@ -88,13 +89,13 @@
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: var(--secondary-texts-color);
+    background-color: var(--color-dark-blue);
 }
 
 .chat-option-list {
     min-width: 100px;
     
-    top: 110%; 
+    top: 100%; 
     right: 0;  
     
     border-radius: 8px;
@@ -102,7 +103,7 @@
     padding: 8px;
     z-index: 10;
     
-    background-color: var(--chat-background);
+    background-color: var(--background-cian);
 
     position: absolute;
     cursor: default;

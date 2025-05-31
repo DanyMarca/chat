@@ -18,11 +18,13 @@ div#main {
 
     flex: 1;
 
-    background-image: url('../../assets/bg.jpg');
+    /* background-image: url('../../assets/bg.jpg');
     background-size: cover;
     background-repeat: repeat;
     background-position: center;
-    background-attachment: scroll;
+    background-attachment: scroll; */
+    background: rgba(217, 245, 240, 0.05);
+    background: linear-gradient(145deg,rgba(217, 245, 240, 0.5) 41%, rgba(42, 170, 171, 0.5) 100%);
 }
 
 /* ------------------- Header ------------------- */
@@ -32,12 +34,12 @@ div#main {
     align-items: center;
     justify-content: space-between;
 
-    height: 10vh;
+    height: 100px;
     width: 100%;
     padding: 12px;
-    background-color: var(--messages-text-color);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-
+    background-color: var(--background-light-blue);
+    box-shadow: var(--shadow-buttons);
+    
     z-index: 1000;
     top: 0px;
 }
@@ -50,8 +52,9 @@ div#main {
 
     border-radius: 16px;
     cursor: pointer;
-    background-color: var(--messages-text-color);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.232);
+    background-color: var(--background-cian);
+    
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.232); */
 
     transition: all 0.3s ease 0.2s;
 }
@@ -96,11 +99,12 @@ div#main {
 
     opacity: 0;
     pointer-events: none;
-    background-color: var(--messages-text-color);
+    background-color: var(--background-cian);
 
-    border-bottom-right-radius: 16px;
-    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
     
+    box-shadow: var(--shadow-buttons);
 
     scrollbar-width: none;
     transform: translateY(-10px);
@@ -130,12 +134,14 @@ div#main {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 4px;
 
     width: 100%;
     cursor: pointer;
 
-    border: solid 1px var(--messages-text-color);
-    border-radius: var(--border-radius);
+    border: solid 1px var(--color-dark-blue);
+    border-radius: 12px;
+    box-shadow: 0px 5px 10px 0px rgba(10, 57, 76, 0.203);
 
     transform: translateY(0);
     transition: opacity 0.2s ease, transform 0.2s ease, border 0.2s ease;
@@ -143,7 +149,7 @@ div#main {
 
 .chat-code-wrapper:hover {
     border: solid 1px var(--border-hover-color);
-    box-shadow: var(--shadow-medium);
+    
 }
 
 .chat-code-wrapper h6 {
@@ -151,7 +157,7 @@ div#main {
     max-width: 100%;
 
     font-weight: var(--weight-bold);
-    font-size: var(--text-lg);
+    font-size: 12px;
 
     white-space: nowrap;
     overflow: hidden;
@@ -180,25 +186,29 @@ div#main {
 /* ------------------- Bottone Esci ------------------- */
 
 .main-header-exit-bt {
-    aspect-ratio: 1/1;
-    height: 80%;
-
+    width: 60px;
+    height: 60px;
     border-radius: 50px;
-    background-color: var(--chat-background);
-    border: solid 1px var(--keyboard-border-color);
+    margin-left: 5px;
+
+    box-shadow: var(--shadow-buttons);
+    background-color: var(--background-cian);
 
     background-image: url(../../assets/close.png);
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
 
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.299);
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.299); */
     transition: all 0.2s ease-in-out;
 }
 
 .main-header-exit-bt:hover {
-    height: 90%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.299);
+    height: 65px;
+    width: 65px;
+    margin-left: 0px;
+
+    
 }
 
 /* ------------------- Stato Utente ------------------- */

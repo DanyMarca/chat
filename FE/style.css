@@ -5,10 +5,7 @@
 
     /* box-shadows */
 
-        --shadow-light:  0px 4px 10px rgba(0, 0, 0, 0.1);
-        --shadow-medium:  0px 4px 10px rgba(0, 0, 0, 0.2);
-        --shadow-bold:  0px 4px 10px rgba(0, 0, 0, 0.3);
-        
+        --shadow-buttons: 0px 10px 20px 0px rgba(10, 57, 76, 0.59);
     /* FONTS */
         --font-primary: 'Inter', sans-serif;
         --font-secondary: 'DM Sans', sans-serif;
@@ -36,27 +33,20 @@
 
         --border-radius-circle: 24px;
 
-    --sidebar-background: #1F2421;
-    --sidebar-hilight-50:#2168696e;
-    --sidebar-hilight: #216869;
-    --sidebar-search-bg:#353b38;
 
-    --chat-background: #DCE1DE;
-    --chat-message-bg-others:#49A078;
-    --chat-message-bg-mine:#9CC5A1;
+    /* COLORS */
 
-    --messages-text-color: #DCE1DE;
-    --secondary-texts-color:#9b9b9b;
+        --background-cian: #D9F5F0;
+        --background-light-blue: #2AAAAB;
+        --color-dark-blue: #0A394C;
 
-    --messages-coming-bg-colo: #6a994e;
-    --messages-sending-bg-colo: #a7c957;
+        --cta-bg: #00C645;
+        --cta-color: #D9F5F0;
 
-    --text-primary-font-size: 1.5rem;
-
-    --keyboard-border-color: #cad0cc9c;
-
-    --sidebar-settings-list-bg: #c0c0c0;
-}
+    /* MESSAGES */
+        --bg-message-coming: #4F772D;
+        --bg-message-sending: #90A955;
+    }
 * {
     box-sizing: border-box;
     
@@ -83,8 +73,27 @@ body{
 }
 
 .CTA{
-    padding: 10px 20px;
-    border-radius: 12px;
+    background-color: var(--cta-bg);
+    color: var(--cta-color);
 
-    aspect-ratio: 1/1;
+    border-radius: 12px;
+    font-size: 30px;
+    padding: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    transition: all ease 0.2s;
+}
+
+.CTA:hover{
+    background-color: var(--cta-color);
+    color: var(--cta-bg);
+}
+
+input{
+    all: unset;
+    padding: 0px 4px;
+    background-color: var(--background-cian);
 }

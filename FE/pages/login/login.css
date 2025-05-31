@@ -1,4 +1,3 @@
-/* Aggiungi alcune basi per il login */
 #login {
     display: flex;
     flex-direction: column;
@@ -6,79 +5,58 @@
     align-items: center;
     width: 100vw;
     min-height: 100dvh;
-    background-color: var(--sidebar-background);
-    color: var(--messages-text-color);
+    background-color: var(--background-cian);
+    color: var(--color-dark-blue);
     padding: 20px;
     box-sizing: border-box;
 }
 
-#login h2 {
-    font-size: var(--text-primary-font-size);
-    margin-bottom: 20px;
-    color: var(--messages-text-color);
-    text-align: center;
+#login-form{
+    padding: 40px;
+    gap: 10px;
+    border-radius: 52px;
+    margin: 64px;
+    background-color: var(--background-light-blue);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Modifica gli input e il bottone */
-#login-form {
-    width: 100%;
-    max-width: 400px;
-    background-color: var(--sidebar-hilight-50);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+#login-form input, button{
+    width: 535px;
+    height: 64px;
+
+    padding-left: 10px;
+    border-radius: 12px;
+}
+#login-form input::placeholder{
+    color: #0A394C;
+    opacity: 50%;
 }
 
-#login-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: var(--sidebar-search-bg);
-    color: var(--messages-text-color);
-    font-size: 1rem;
+#login-form button{
+    width: 250px;
 }
 
-#login-form input:focus {
-    border-color: var(--sidebar-hilight);
-    outline: none;
-}
-
-/* Pulsante */
-#login-form button {
-    width: 100%;
-    padding: 12px;
-    background-color: var(--sidebar-hilight);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#login-form button:hover {
-    background-color: var(--sidebar-hilight-50);
-}
-
-/* Stile di feedback per errori o messaggi */
-.error-message {
-    color: #ff4d4d;
-    text-align: center;
-    margin-top: 15px;
+#login-logo{
+    font-size: 42px;
+    margin: 0px;
 }
 
 #register-link{
-    padding: 12px;
-    color: var(--secondary-texts-color);
+    font-size: 24px;
+    margin: 0px;
+    color: var(--color-dark-blue);
+    opacity: 50%;
 }
+
 #register-link:hover{
-    color: var(--messages-text-color);
+    opacity: 100%;
     cursor: pointer;
     text-decoration: underline;
 }
-/* Media queries per dispositivi mobili */
+
 @media (max-width: 600px) {
     #login-form {
         padding: 15px;

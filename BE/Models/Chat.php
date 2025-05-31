@@ -102,12 +102,20 @@ class Chat{
     private static function renderMessagesFromChat($db, $chat_id)
     {
         $sql = "
-            SELECT m.id, m.created_at, m.user_id, m.chat_id, m.content
+            SELECT 
+                m.id, 
+                m.created_at, 
+                m.user_id, 
+                m.chat_id, 
+                m.content,
+                u.username AS user_name
             FROM Chats AS c
             INNER JOIN Messages AS m ON c.id = m.chat_id
+            INNER JOIN Users AS u ON m.user_id = u.id
             WHERE c.id = :chat_id
             ORDER BY m.created_at ASC
         ";
+
         $stmt = $db->prepare($sql);
         $stmt->execute([
             'chat_id' => $chat_id,

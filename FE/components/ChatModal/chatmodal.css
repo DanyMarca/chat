@@ -1,7 +1,7 @@
 .modal-wrapper{
     height: 100dvh;
     width: 100dvw; 
-    
+
     top: 0px;
     z-index: 1000;
 
@@ -16,36 +16,55 @@
 }
 
 .modal-card{
-    padding: 0px 12px;
-
-    border-radius: 12px;
-    background-color: var(--sidebar-settings-list-bg);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.232);
+    padding: 60px; 
+    border-radius: 32px;
+    background-color: white;
+    box-shadow: var(--shadow-buttons);
 }
-
-div#chat-modal-card{
-    height: 50%;
-    width: 40%;
-    padding: 12px;
-
-    display: flex;
-    justify-content: space-evenly;
-
-}
-
 .modal-card-section{
     padding: 12px;
     gap: 12px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+
+    background-color: var(--background-light-blue);
+}
+
+.modal-card-section input{
+    border-radius: 12px;
+    padding: 10px;
+    background-color: var(--background-cian);
+}
+
+.modal-card-section h4{
+    margin: 0px;
+    width: 70%;
+    word-wrap: normal;
+    text-align: center;
+
+}
+
+div#chat-modal-card{
+    height: 50%;
+    border-radius: 92px;
+    padding: 60px; 
+    gap: 60px;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    background-color: var(--background-cian);
+
 }
 
 #output-join-chat, #output-create-chat{
     text-align: center;
 }
+
+
 
 @keyframes fadeInUp {
     from {
@@ -70,7 +89,7 @@ div#chat-modal-card{
     }
 }
 
-.div-bt{
+/* .div-bt{
     padding: 8px 4px;
 
     cursor: pointer;
@@ -81,7 +100,7 @@ div#chat-modal-card{
 .div-bt:hover{
     color: var(--sidebar-settings-list-bg);
     background-color: black;
-}
+} */
 
 @media (max-width: 768px) {
     div#chat-modal-card{

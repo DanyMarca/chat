@@ -1,8 +1,12 @@
 .message{
     max-width: 50%;
-    min-width: 5%;
-    padding: 12px;
-    border-radius: 16px;
+    min-width: 300px;
+    padding: 20px;
+    border-radius: 32px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     
     overflow-wrap: break-word;
     word-wrap: break-word;  /* Fallback per compatibilità */
@@ -24,25 +28,41 @@
 }
 
 .message.coming{
-    background-color: var(--messages-coming-bg-colo);
+    background-color: var(--bg-message-coming);
     align-self: flex-start;
-    border-radius: 0 16px 16px 0;
+    border-radius: 0 32px 32px 0;
     padding-left: 24px;
 }
 
 .message.sending{
-    background-color: var(--messages-sending-bg-colo);
+    background-color: var(--bg-message-sending);
     align-self: flex-end;
-    border-radius: 16px 0 0 16px;
+    border-radius: 32px 0 0 32px;
     padding-right: 24px;
+}
+
+.info{
+    background-color: var(--background-cian);
+
+    padding: 10px;
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 h4.message-time{
     margin: 0px;
+    
 }
 
 .message-owner{
-    display: none;
+    margin: 0px;
+}
+.message-content{
+    margin: 0px;
+    padding: 10px;
+    border-radius: 12px;
 }
 
 @media (max-width: 768px) {
