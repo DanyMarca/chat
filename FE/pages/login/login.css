@@ -3,12 +3,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     width: 100vw;
     min-height: 100dvh;
+    padding: 20px;
+
     background-color: var(--background-cian);
     color: var(--color-dark-blue);
-    padding: 20px;
-    box-sizing: border-box;
+
 }
 
 #login-form{
@@ -59,11 +61,17 @@
 
 @media (max-width: 600px) {
     #login-form {
-        padding: 15px;
+        padding: 30px;
+        border-radius: 42px;
     }
 
-    #login-form input,
-    #login-form button {
+    #login-form input{
+        width: 70dvw;
+        font-size: 0.9rem;
+    }
+
+    #login-form button{
+        width: 40dvw;
         font-size: 0.9rem;
     }
 

@@ -63,15 +63,6 @@ body{
     user-select: none;
 }
 
-@media (max-width: 768px) {
-    #app {
-        flex-direction: column;
-        width: 100vw;
-        
-    }
-
-}
-
 .CTA{
     background-color: var(--cta-bg);
     color: var(--cta-color);
@@ -96,4 +87,13 @@ input{
     all: unset;
     padding: 0px 4px;
     background-color: var(--background-cian);
+}
+
+@media (max-width: 768px) {
+    #app {
+        flex-direction: column;
+        width: 100dvw;
+        
+    }
+
 }

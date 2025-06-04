@@ -109,8 +109,9 @@ async function loadChatCode(mainChat, chatData) {
     code_wrapper.setAttribute('chat_code',chatData.chat.chat_code );
 }
 
-async function copyChatCode(){
-    let chat_code = document.querySelector('.chat-code-text').getAttribute('chat_code');
-    navigator.clipboard.writeText(chat_code);
-    
+async function copyChatCode() {
+    const chat_code = document.querySelector('.chat-code-text')?.getAttribute('chat_code');
+    await navigator.clipboard.writeText(chat_code);
+
 }
+
